@@ -1,111 +1,1574 @@
 {
+  "total_elapsed_seconds": 564.78,
+  "llm_telemetry": {
+    "llm_api_calls": 762,
+    "llm_cache_hits": 5567,
+    "embed_api_calls": 175,
+    "embed_cache_hits": 4052,
+    "prompt_tokens": 4052871,
+    "completion_tokens": 75840
+  },
   "exp1_failure_detection": {
-    "total_sims": 400,
-    "total_fails": 188,
-    "total_passes": 212,
-    "silent_fails": 171,
-    "silent_fail_pct": 0.9095744680851063,
-    "tool_recall": 0.09042553191489362,
-    "pushback_recall": 0.6223404255319149,
-    "dual_recall": 0.6542553191489362,
-    "silent_pushback_recall": 0.6198830409356725
+    "elapsed_seconds": 1.89,
+    "tau2_combined": {
+      "total_sessions": 1312,
+      "total_failures": 403,
+      "total_passes": 909,
+      "silent_failures": 328,
+      "silent_failure_rate": 0.8139,
+      "passes_with_mid_session_tool_error": 125,
+      "mid_session_tool_errors_correctly_marked_resolved_by_scar": 95,
+      "silent_failures_caught_by_scar": 176,
+      "silent_failure_recall_scar": 0.5366,
+      "scar_resolved_struggle_count": 137,
+      "scar_resolved_struggle_precision_on_pass": 0.7591,
+      "detectors": {
+        "tool_only": {
+          "tp": 75,
+          "fp": 125,
+          "tn": 784,
+          "fn": 328,
+          "precision": 0.375,
+          "recall": 0.1861,
+          "fpr": 0.1375,
+          "accuracy": 0.6547,
+          "f1": 0.2488
+        },
+        "naive_regex": {
+          "tp": 300,
+          "fp": 716,
+          "tn": 193,
+          "fn": 103,
+          "precision": 0.2953,
+          "recall": 0.7444,
+          "fpr": 0.7877,
+          "accuracy": 0.3758,
+          "f1": 0.4228
+        },
+        "static_sentiment": {
+          "tp": 164,
+          "fp": 319,
+          "tn": 590,
+          "fn": 239,
+          "precision": 0.3395,
+          "recall": 0.4069,
+          "fpr": 0.3509,
+          "accuracy": 0.5747,
+          "f1": 0.3702
+        },
+        "contextual_pushback_only": {
+          "tp": 32,
+          "fp": 10,
+          "tn": 899,
+          "fn": 371,
+          "precision": 0.7619,
+          "recall": 0.0794,
+          "fpr": 0.011,
+          "accuracy": 0.7096,
+          "f1": 0.1438
+        },
+        "scar_transition": {
+          "tp": 220,
+          "fp": 122,
+          "tn": 787,
+          "fn": 183,
+          "precision": 0.6433,
+          "recall": 0.5459,
+          "fpr": 0.1342,
+          "accuracy": 0.7675,
+          "f1": 0.5906
+        }
+      }
+    },
+    "tau2_airline": {
+      "total_sessions": 400,
+      "total_failures": 188,
+      "total_passes": 212,
+      "silent_failures": 171,
+      "silent_failure_rate": 0.9096,
+      "passes_with_mid_session_tool_error": 10,
+      "mid_session_tool_errors_correctly_marked_resolved_by_scar": 2,
+      "silent_failures_caught_by_scar": 120,
+      "silent_failure_recall_scar": 0.7018,
+      "scar_resolved_struggle_count": 13,
+      "scar_resolved_struggle_precision_on_pass": 0.4615,
+      "detectors": {
+        "tool_only": {
+          "tp": 17,
+          "fp": 10,
+          "tn": 202,
+          "fn": 171,
+          "precision": 0.6296,
+          "recall": 0.0904,
+          "fpr": 0.0472,
+          "accuracy": 0.5475,
+          "f1": 0.1581
+        },
+        "naive_regex": {
+          "tp": 117,
+          "fp": 131,
+          "tn": 81,
+          "fn": 71,
+          "precision": 0.4718,
+          "recall": 0.6223,
+          "fpr": 0.6179,
+          "accuracy": 0.495,
+          "f1": 0.5367
+        },
+        "static_sentiment": {
+          "tp": 75,
+          "fp": 75,
+          "tn": 137,
+          "fn": 113,
+          "precision": 0.5,
+          "recall": 0.3989,
+          "fpr": 0.3538,
+          "accuracy": 0.53,
+          "f1": 0.4438
+        },
+        "contextual_pushback_only": {
+          "tp": 10,
+          "fp": 3,
+          "tn": 209,
+          "fn": 178,
+          "precision": 0.7692,
+          "recall": 0.0532,
+          "fpr": 0.0142,
+          "accuracy": 0.5475,
+          "f1": 0.0995
+        },
+        "scar_transition": {
+          "tp": 131,
+          "fp": 44,
+          "tn": 168,
+          "fn": 57,
+          "precision": 0.7486,
+          "recall": 0.6968,
+          "fpr": 0.2075,
+          "accuracy": 0.7475,
+          "f1": 0.7218
+        }
+      }
+    },
+    "tau2_retail": {
+      "total_sessions": 912,
+      "total_failures": 215,
+      "total_passes": 697,
+      "silent_failures": 157,
+      "silent_failure_rate": 0.7302,
+      "passes_with_mid_session_tool_error": 115,
+      "mid_session_tool_errors_correctly_marked_resolved_by_scar": 93,
+      "silent_failures_caught_by_scar": 56,
+      "silent_failure_recall_scar": 0.3567,
+      "scar_resolved_struggle_count": 124,
+      "scar_resolved_struggle_precision_on_pass": 0.7903,
+      "detectors": {
+        "tool_only": {
+          "tp": 58,
+          "fp": 115,
+          "tn": 582,
+          "fn": 157,
+          "precision": 0.3353,
+          "recall": 0.2698,
+          "fpr": 0.165,
+          "accuracy": 0.7018,
+          "f1": 0.299
+        },
+        "naive_regex": {
+          "tp": 183,
+          "fp": 585,
+          "tn": 112,
+          "fn": 32,
+          "precision": 0.2383,
+          "recall": 0.8512,
+          "fpr": 0.8393,
+          "accuracy": 0.3235,
+          "f1": 0.3723
+        },
+        "static_sentiment": {
+          "tp": 89,
+          "fp": 244,
+          "tn": 453,
+          "fn": 126,
+          "precision": 0.2673,
+          "recall": 0.414,
+          "fpr": 0.3501,
+          "accuracy": 0.5943,
+          "f1": 0.3248
+        },
+        "contextual_pushback_only": {
+          "tp": 22,
+          "fp": 7,
+          "tn": 690,
+          "fn": 193,
+          "precision": 0.7586,
+          "recall": 0.1023,
+          "fpr": 0.01,
+          "accuracy": 0.7807,
+          "f1": 0.1803
+        },
+        "scar_transition": {
+          "tp": 89,
+          "fp": 78,
+          "tn": 619,
+          "fn": 126,
+          "precision": 0.5329,
+          "recall": 0.414,
+          "fpr": 0.1119,
+          "accuracy": 0.7763,
+          "f1": 0.466
+        }
+      }
+    },
+    "openhands_human": {
+      "total_sessions": 275,
+      "total_failures": 111,
+      "total_passes": 164,
+      "silent_failures": 33,
+      "silent_failure_rate": 0.2973,
+      "passes_with_mid_session_tool_error": 93,
+      "mid_session_tool_errors_correctly_marked_resolved_by_scar": 43,
+      "silent_failures_caught_by_scar": 30,
+      "silent_failure_recall_scar": 0.9091,
+      "scar_resolved_struggle_count": 65,
+      "scar_resolved_struggle_precision_on_pass": 0.8923,
+      "detectors": {
+        "tool_only": {
+          "tp": 78,
+          "fp": 93,
+          "tn": 71,
+          "fn": 33,
+          "precision": 0.4561,
+          "recall": 0.7027,
+          "fpr": 0.5671,
+          "accuracy": 0.5418,
+          "f1": 0.5532
+        },
+        "naive_regex": {
+          "tp": 17,
+          "fp": 32,
+          "tn": 132,
+          "fn": 94,
+          "precision": 0.3469,
+          "recall": 0.1532,
+          "fpr": 0.1951,
+          "accuracy": 0.5418,
+          "f1": 0.2125
+        },
+        "static_sentiment": {
+          "tp": 8,
+          "fp": 9,
+          "tn": 155,
+          "fn": 103,
+          "precision": 0.4706,
+          "recall": 0.0721,
+          "fpr": 0.0549,
+          "accuracy": 0.5927,
+          "f1": 0.125
+        },
+        "contextual_pushback_only": {
+          "tp": 30,
+          "fp": 39,
+          "tn": 125,
+          "fn": 81,
+          "precision": 0.4348,
+          "recall": 0.2703,
+          "fpr": 0.2378,
+          "accuracy": 0.5636,
+          "f1": 0.3333
+        },
+        "scar_transition": {
+          "tp": 102,
+          "fp": 81,
+          "tn": 83,
+          "fn": 9,
+          "precision": 0.5574,
+          "recall": 0.9189,
+          "fpr": 0.4939,
+          "accuracy": 0.6727,
+          "f1": 0.6939
+        }
+      }
+    },
+    "overall_all_corpora": {
+      "total_sessions": 1587,
+      "total_failures": 514,
+      "total_passes": 1073,
+      "silent_failures": 361,
+      "silent_failure_rate": 0.7023,
+      "passes_with_mid_session_tool_error": 218,
+      "mid_session_tool_errors_correctly_marked_resolved_by_scar": 138,
+      "silent_failures_caught_by_scar": 206,
+      "silent_failure_recall_scar": 0.5706,
+      "scar_resolved_struggle_count": 202,
+      "scar_resolved_struggle_precision_on_pass": 0.802,
+      "detectors": {
+        "tool_only": {
+          "tp": 153,
+          "fp": 218,
+          "tn": 855,
+          "fn": 361,
+          "precision": 0.4124,
+          "recall": 0.2977,
+          "fpr": 0.2032,
+          "accuracy": 0.6352,
+          "f1": 0.3458
+        },
+        "naive_regex": {
+          "tp": 317,
+          "fp": 748,
+          "tn": 325,
+          "fn": 197,
+          "precision": 0.2977,
+          "recall": 0.6167,
+          "fpr": 0.6971,
+          "accuracy": 0.4045,
+          "f1": 0.4015
+        },
+        "static_sentiment": {
+          "tp": 172,
+          "fp": 328,
+          "tn": 745,
+          "fn": 342,
+          "precision": 0.344,
+          "recall": 0.3346,
+          "fpr": 0.3057,
+          "accuracy": 0.5778,
+          "f1": 0.3393
+        },
+        "contextual_pushback_only": {
+          "tp": 62,
+          "fp": 49,
+          "tn": 1024,
+          "fn": 452,
+          "precision": 0.5586,
+          "recall": 0.1206,
+          "fpr": 0.0457,
+          "accuracy": 0.6843,
+          "f1": 0.1984
+        },
+        "scar_transition": {
+          "tp": 322,
+          "fp": 203,
+          "tn": 870,
+          "fn": 192,
+          "precision": 0.6133,
+          "recall": 0.6265,
+          "fpr": 0.1892,
+          "accuracy": 0.7511,
+          "f1": 0.6198
+        }
+      }
+    }
   },
   "exp2_retention_budget": {
-    "0.1": {
-      "fifo": {
-        "proc_retained": 14,
-        "proc_total": 14,
-        "fact_retained": 16,
-        "fact_total": 32
+    "elapsed_seconds": 103.3,
+    "num_users": 12,
+    "sessions_per_user": 8,
+    "avg_raw_transcript_tokens": 8338.2,
+    "total_probe_evaluations": 2016,
+    "budgets": {
+      "10pct": {
+        "fifo": {
+          "avg_used_tokens": 816.6,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.0357,
+          "overall_precision": 0.5,
+          "overall_f1": 0.0667,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 1,
+              "total": 24,
+              "non_pollution_rate": 0.9583,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 2,
+              "total": 24,
+              "non_pollution_rate": 0.9167,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 2,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0833,
+              "precision": 1.0,
+              "f1": 0.1538
+            },
+            "quarantine_safety": {
+              "correct": 1,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0833,
+              "precision": 1.0,
+              "f1": 0.1538
+            }
+          }
+        },
+        "rolling_summary": {
+          "avg_used_tokens": 506.0,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.9048,
+          "overall_precision": 0.9744,
+          "overall_f1": 0.9383,
+          "by_category": {
+            "static_fact": {
+              "correct": 19,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.7917,
+              "precision": 1.0,
+              "f1": 0.8837
+            },
+            "updated_pref": {
+              "correct": 22,
+              "false_claims": 1,
+              "total": 24,
+              "non_pollution_rate": 0.9583,
+              "recall": 0.9167,
+              "precision": 0.9565,
+              "f1": 0.9362
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 11,
+              "false_claims": 1,
+              "total": 12,
+              "non_pollution_rate": 0.9167,
+              "recall": 0.9167,
+              "precision": 0.9167,
+              "f1": 0.9167
+            }
+          }
+        },
+        "atomic_facts_mem0": {
+          "avg_used_tokens": 653.5,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.75,
+          "overall_precision": 0.913,
+          "overall_f1": 0.8235,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 22,
+              "false_claims": 2,
+              "total": 24,
+              "non_pollution_rate": 0.9167,
+              "recall": 0.9167,
+              "precision": 0.9167,
+              "f1": 0.9167
+            },
+            "procedural": {
+              "correct": 12,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 4,
+              "total": 12,
+              "non_pollution_rate": 0.6667,
+              "recall": 0.5,
+              "precision": 0.6,
+              "f1": 0.5455
+            }
+          }
+        },
+        "single_turn_importance": {
+          "avg_used_tokens": 488.2,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.9048,
+          "overall_precision": 0.9268,
+          "overall_f1": 0.9157,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 23,
+              "false_claims": 1,
+              "total": 24,
+              "non_pollution_rate": 0.9583,
+              "recall": 0.9583,
+              "precision": 0.9583,
+              "f1": 0.9583
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 5,
+              "total": 12,
+              "non_pollution_rate": 0.5833,
+              "recall": 0.5,
+              "precision": 0.5455,
+              "f1": 0.5217
+            }
+          }
+        },
+        "static_sentiment": {
+          "avg_used_tokens": 431.8,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.3333,
+          "overall_precision": 0.875,
+          "overall_f1": 0.4828,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 22,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9167,
+              "precision": 1.0,
+              "f1": 0.9565
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 4,
+              "total": 12,
+              "non_pollution_rate": 0.6667,
+              "recall": 0.5,
+              "precision": 0.6,
+              "f1": 0.5455
+            }
+          }
+        },
+        "tool_outcome_only": {
+          "avg_used_tokens": 70.1,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.2143,
+          "overall_precision": 1.0,
+          "overall_f1": 0.3529,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 12,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            }
+          }
+        },
+        "scar_no_gate": {
+          "avg_used_tokens": 359.2,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.9167,
+          "overall_precision": 0.9277,
+          "overall_f1": 0.9222,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 6,
+              "total": 12,
+              "non_pollution_rate": 0.5,
+              "recall": 0.5,
+              "precision": 0.5,
+              "f1": 0.5
+            }
+          }
+        },
+        "scar_full": {
+          "avg_used_tokens": 180.2,
+          "avg_budget_tokens": 833.3,
+          "overall_recall": 0.8452,
+          "overall_precision": 1.0,
+          "overall_f1": 0.9161,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 20,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.8333,
+              "precision": 1.0,
+              "f1": 0.9091
+            },
+            "quarantine_safety": {
+              "correct": 4,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.3333,
+              "precision": 1.0,
+              "f1": 0.5
+            }
+          }
+        }
       },
-      "mem0": {
-        "proc_retained": 4.8999999999999995,
-        "proc_total": 14,
-        "fact_retained": 32,
-        "fact_total": 32
+      "25pct": {
+        "fifo": {
+          "avg_used_tokens": 2050.4,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.0476,
+          "overall_precision": 0.5,
+          "overall_f1": 0.087,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 1,
+              "total": 24,
+              "non_pollution_rate": 0.9583,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 1,
+              "false_claims": 3,
+              "total": 24,
+              "non_pollution_rate": 0.875,
+              "recall": 0.0417,
+              "precision": 0.25,
+              "f1": 0.0714
+            },
+            "procedural": {
+              "correct": 2,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0833,
+              "precision": 1.0,
+              "f1": 0.1538
+            },
+            "quarantine_safety": {
+              "correct": 1,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0833,
+              "precision": 1.0,
+              "f1": 0.1538
+            }
+          }
+        },
+        "rolling_summary": {
+          "avg_used_tokens": 506.0,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.9167,
+          "overall_precision": 1.0,
+          "overall_f1": 0.9565,
+          "by_category": {
+            "static_fact": {
+              "correct": 19,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.7917,
+              "precision": 1.0,
+              "f1": 0.8837
+            },
+            "updated_pref": {
+              "correct": 22,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9167,
+              "precision": 1.0,
+              "f1": 0.9565
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 12,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "atomic_facts_mem0": {
+          "avg_used_tokens": 663.5,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.7262,
+          "overall_precision": 0.8592,
+          "overall_f1": 0.7871,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 19,
+              "false_claims": 5,
+              "total": 24,
+              "non_pollution_rate": 0.7917,
+              "recall": 0.7917,
+              "precision": 0.7917,
+              "f1": 0.7917
+            },
+            "procedural": {
+              "correct": 12,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            },
+            "quarantine_safety": {
+              "correct": 7,
+              "false_claims": 5,
+              "total": 12,
+              "non_pollution_rate": 0.5833,
+              "recall": 0.5833,
+              "precision": 0.5833,
+              "f1": 0.5833
+            }
+          }
+        },
+        "single_turn_importance": {
+          "avg_used_tokens": 488.2,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.9048,
+          "overall_precision": 0.9383,
+          "overall_f1": 0.9212,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 23,
+              "false_claims": 1,
+              "total": 24,
+              "non_pollution_rate": 0.9583,
+              "recall": 0.9583,
+              "precision": 0.9583,
+              "f1": 0.9583
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 4,
+              "total": 12,
+              "non_pollution_rate": 0.6667,
+              "recall": 0.5,
+              "precision": 0.6,
+              "f1": 0.5455
+            }
+          }
+        },
+        "static_sentiment": {
+          "avg_used_tokens": 431.8,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.3571,
+          "overall_precision": 0.8571,
+          "overall_f1": 0.5042,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 5,
+              "total": 12,
+              "non_pollution_rate": 0.5833,
+              "recall": 0.5,
+              "precision": 0.5455,
+              "f1": 0.5217
+            }
+          }
+        },
+        "tool_outcome_only": {
+          "avg_used_tokens": 70.1,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.2143,
+          "overall_precision": 1.0,
+          "overall_f1": 0.3529,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 12,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            }
+          }
+        },
+        "scar_no_gate": {
+          "avg_used_tokens": 359.2,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.9167,
+          "overall_precision": 0.9277,
+          "overall_f1": 0.9222,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 6,
+              "total": 12,
+              "non_pollution_rate": 0.5,
+              "recall": 0.5,
+              "precision": 0.5,
+              "f1": 0.5
+            }
+          }
+        },
+        "scar_full": {
+          "avg_used_tokens": 180.2,
+          "avg_budget_tokens": 2084.2,
+          "overall_recall": 0.8571,
+          "overall_precision": 1.0,
+          "overall_f1": 0.9231,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 20,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.8333,
+              "precision": 1.0,
+              "f1": 0.9091
+            },
+            "quarantine_safety": {
+              "correct": 5,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.4167,
+              "precision": 1.0,
+              "f1": 0.5882
+            }
+          }
+        }
       },
-      "tool_outcome": {
-        "proc_retained": 2,
-        "proc_total": 14,
-        "fact_retained": 6.400000000000001,
-        "fact_total": 32
-      },
-      "scar": {
-        "proc_retained": 14,
-        "proc_total": 14,
-        "fact_retained": 32,
-        "fact_total": 32
-      }
-    },
-    "0.25": {
-      "fifo": {
-        "proc_retained": 14,
-        "proc_total": 14,
-        "fact_retained": 16,
-        "fact_total": 32
-      },
-      "mem0": {
-        "proc_retained": 4.8999999999999995,
-        "proc_total": 14,
-        "fact_retained": 32,
-        "fact_total": 32
-      },
-      "tool_outcome": {
-        "proc_retained": 2,
-        "proc_total": 14,
-        "fact_retained": 6.400000000000001,
-        "fact_total": 32
-      },
-      "scar": {
-        "proc_retained": 14,
-        "proc_total": 14,
-        "fact_retained": 32,
-        "fact_total": 32
-      }
-    },
-    "0.5": {
-      "fifo": {
-        "proc_retained": 14,
-        "proc_total": 14,
-        "fact_retained": 16,
-        "fact_total": 32
-      },
-      "mem0": {
-        "proc_retained": 4.8999999999999995,
-        "proc_total": 14,
-        "fact_retained": 32,
-        "fact_total": 32
-      },
-      "tool_outcome": {
-        "proc_retained": 2,
-        "proc_total": 14,
-        "fact_retained": 6.400000000000001,
-        "fact_total": 32
-      },
-      "scar": {
-        "proc_retained": 14,
-        "proc_total": 14,
-        "fact_retained": 32,
-        "fact_total": 32
+      "50pct": {
+        "fifo": {
+          "avg_used_tokens": 4050.2,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.2143,
+          "overall_precision": 0.7826,
+          "overall_f1": 0.3364,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 1,
+              "total": 24,
+              "non_pollution_rate": 0.9583,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 6,
+              "false_claims": 3,
+              "total": 24,
+              "non_pollution_rate": 0.875,
+              "recall": 0.25,
+              "precision": 0.6667,
+              "f1": 0.3636
+            },
+            "procedural": {
+              "correct": 9,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.375,
+              "precision": 1.0,
+              "f1": 0.5455
+            },
+            "quarantine_safety": {
+              "correct": 3,
+              "false_claims": 1,
+              "total": 12,
+              "non_pollution_rate": 0.9167,
+              "recall": 0.25,
+              "precision": 0.75,
+              "f1": 0.375
+            }
+          }
+        },
+        "rolling_summary": {
+          "avg_used_tokens": 506.0,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.9167,
+          "overall_precision": 0.9872,
+          "overall_f1": 0.9506,
+          "by_category": {
+            "static_fact": {
+              "correct": 20,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.8333,
+              "precision": 1.0,
+              "f1": 0.9091
+            },
+            "updated_pref": {
+              "correct": 22,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9167,
+              "precision": 1.0,
+              "f1": 0.9565
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 11,
+              "false_claims": 1,
+              "total": 12,
+              "non_pollution_rate": 0.9167,
+              "recall": 0.9167,
+              "precision": 0.9167,
+              "f1": 0.9167
+            }
+          }
+        },
+        "atomic_facts_mem0": {
+          "avg_used_tokens": 663.5,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.7381,
+          "overall_precision": 0.9118,
+          "overall_f1": 0.8158,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 21,
+              "false_claims": 3,
+              "total": 24,
+              "non_pollution_rate": 0.875,
+              "recall": 0.875,
+              "precision": 0.875,
+              "f1": 0.875
+            },
+            "procedural": {
+              "correct": 11,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.4583,
+              "precision": 1.0,
+              "f1": 0.6286
+            },
+            "quarantine_safety": {
+              "correct": 7,
+              "false_claims": 3,
+              "total": 12,
+              "non_pollution_rate": 0.75,
+              "recall": 0.5833,
+              "precision": 0.7,
+              "f1": 0.6364
+            }
+          }
+        },
+        "single_turn_importance": {
+          "avg_used_tokens": 488.2,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.9167,
+          "overall_precision": 0.939,
+          "overall_f1": 0.9277,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 5,
+              "total": 12,
+              "non_pollution_rate": 0.5833,
+              "recall": 0.5,
+              "precision": 0.5455,
+              "f1": 0.5217
+            }
+          }
+        },
+        "static_sentiment": {
+          "avg_used_tokens": 431.8,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.3333,
+          "overall_precision": 0.9333,
+          "overall_f1": 0.4912,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 22,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9167,
+              "precision": 1.0,
+              "f1": 0.9565
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 2,
+              "total": 12,
+              "non_pollution_rate": 0.8333,
+              "recall": 0.5,
+              "precision": 0.75,
+              "f1": 0.6
+            }
+          }
+        },
+        "tool_outcome_only": {
+          "avg_used_tokens": 70.1,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.2143,
+          "overall_precision": 1.0,
+          "overall_f1": 0.3529,
+          "by_category": {
+            "static_fact": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "updated_pref": {
+              "correct": 0,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.0,
+              "precision": 0.0,
+              "f1": 0.0
+            },
+            "procedural": {
+              "correct": 12,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.5,
+              "precision": 1.0,
+              "f1": 0.6667
+            }
+          }
+        },
+        "scar_no_gate": {
+          "avg_used_tokens": 359.2,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.9167,
+          "overall_precision": 0.9277,
+          "overall_f1": 0.9222,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "quarantine_safety": {
+              "correct": 6,
+              "false_claims": 6,
+              "total": 12,
+              "non_pollution_rate": 0.5,
+              "recall": 0.5,
+              "precision": 0.5,
+              "f1": 0.5
+            }
+          }
+        },
+        "scar_full": {
+          "avg_used_tokens": 180.2,
+          "avg_budget_tokens": 4168.8,
+          "overall_recall": 0.8571,
+          "overall_precision": 1.0,
+          "overall_f1": 0.9231,
+          "by_category": {
+            "static_fact": {
+              "correct": 23,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.9583,
+              "precision": 1.0,
+              "f1": 0.9787
+            },
+            "updated_pref": {
+              "correct": 24,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 1.0,
+              "precision": 1.0,
+              "f1": 1.0
+            },
+            "procedural": {
+              "correct": 20,
+              "false_claims": 0,
+              "total": 24,
+              "non_pollution_rate": 1.0,
+              "recall": 0.8333,
+              "precision": 1.0,
+              "f1": 0.9091
+            },
+            "quarantine_safety": {
+              "correct": 5,
+              "false_claims": 0,
+              "total": 12,
+              "non_pollution_rate": 1.0,
+              "recall": 0.4167,
+              "precision": 1.0,
+              "f1": 0.5882
+            }
+          }
+        }
       }
     }
   },
   "exp3_repeat_mistakes": {
-    "zero_shot": {
-      "repeated": 20,
-      "total": 48
+    "elapsed_seconds": 459.46,
+    "protocol": "2-fold disjoint task_id split across Airline (50 tasks) and Retail (114 tasks), first-mutation decision points, zero reward_info access",
+    "memory_budget_tokens": 450,
+    "consolidation_meta": {
+      "airline_fold_A": {
+        "scar_full_cards": 11,
+        "scar_replay_attempts": 15,
+        "scar_replay_passed": 11,
+        "scar_nogate_cards": 32
+      },
+      "airline_fold_B": {
+        "scar_full_cards": 6,
+        "scar_replay_attempts": 8,
+        "scar_replay_passed": 6,
+        "scar_nogate_cards": 26
+      },
+      "retail_fold_A": {
+        "scar_full_cards": 24,
+        "scar_replay_attempts": 26,
+        "scar_replay_passed": 24,
+        "scar_nogate_cards": 46
+      },
+      "retail_fold_B": {
+        "scar_full_cards": 24,
+        "scar_replay_attempts": 28,
+        "scar_replay_passed": 24,
+        "scar_nogate_cards": 48
+      }
     },
-    "raw_history": {
-      "repeated": 20,
-      "total": 48
+    "systems": {
+      "zero_shot": {
+        "total_heldout_trials": 52,
+        "mistakes_repeated": 17,
+        "mistakes_avoided": 35,
+        "repeat_error_rate": 0.3269,
+        "airline_repeat_rate": 0.2381,
+        "retail_repeat_rate": 0.3871,
+        "mut_tool_error_repeat_rate": 0.3143,
+        "silent_forbid_repeat_rate": 0.3529,
+        "avg_memory_tokens": 0.0
+      },
+      "raw_rag": {
+        "total_heldout_trials": 52,
+        "mistakes_repeated": 22,
+        "mistakes_avoided": 30,
+        "repeat_error_rate": 0.4231,
+        "airline_repeat_rate": 0.4762,
+        "retail_repeat_rate": 0.3871,
+        "mut_tool_error_repeat_rate": 0.3714,
+        "silent_forbid_repeat_rate": 0.5294,
+        "avg_memory_tokens": 353.4
+      },
+      "atomic_facts_mem0": {
+        "total_heldout_trials": 52,
+        "mistakes_repeated": 18,
+        "mistakes_avoided": 34,
+        "repeat_error_rate": 0.3462,
+        "airline_repeat_rate": 0.4762,
+        "retail_repeat_rate": 0.2581,
+        "mut_tool_error_repeat_rate": 0.2857,
+        "silent_forbid_repeat_rate": 0.4706,
+        "avg_memory_tokens": 448.5
+      },
+      "tool_outcome_only": {
+        "total_heldout_trials": 52,
+        "mistakes_repeated": 16,
+        "mistakes_avoided": 36,
+        "repeat_error_rate": 0.3077,
+        "airline_repeat_rate": 0.381,
+        "retail_repeat_rate": 0.2581,
+        "mut_tool_error_repeat_rate": 0.2857,
+        "silent_forbid_repeat_rate": 0.3529,
+        "avg_memory_tokens": 323.6
+      },
+      "scar_no_gate": {
+        "total_heldout_trials": 52,
+        "mistakes_repeated": 16,
+        "mistakes_avoided": 36,
+        "repeat_error_rate": 0.3077,
+        "airline_repeat_rate": 0.4286,
+        "retail_repeat_rate": 0.2258,
+        "mut_tool_error_repeat_rate": 0.2286,
+        "silent_forbid_repeat_rate": 0.4706,
+        "avg_memory_tokens": 424.7
+      },
+      "scar_full": {
+        "total_heldout_trials": 52,
+        "mistakes_repeated": 14,
+        "mistakes_avoided": 38,
+        "repeat_error_rate": 0.2692,
+        "airline_repeat_rate": 0.381,
+        "retail_repeat_rate": 0.1935,
+        "mut_tool_error_repeat_rate": 0.1714,
+        "silent_forbid_repeat_rate": 0.4706,
+        "avg_memory_tokens": 418.7
+      }
     },
-    "mem0_facts": {
-      "repeated": 20,
-      "total": 48
+    "non_regression_controls": {
+      "zero_shot": {
+        "total_controls": 30,
+        "passed": 18,
+        "pass_rate": 0.6
+      },
+      "scar_full": {
+        "total_controls": 30,
+        "passed": 19,
+        "pass_rate": 0.6333
+      }
     },
-    "scar": {
-      "repeated": 0,
-      "total": 48
-    }
+    "relative_repeat_error_reduction_vs_zero_shot": 0.1765,
+    "relative_repeat_error_reduction_vs_mem0": 0.2224,
+    "absolute_repeat_error_reduction_vs_zero_shot": 0.0577,
+    "absolute_repeat_error_reduction_vs_mem0": 0.077
   }
 }

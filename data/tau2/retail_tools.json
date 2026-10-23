@@ -1,0 +1,385 @@
+[
+  {
+    "name": "calculate",
+    "description": "Calculate the result of a mathematical expression. The result of the mathematical expression. ValueError: If the expression is invalid.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "expression": {
+          "type": "STRING",
+          "description": "The mathematical expression to calculate, such as '2 + 2'. The expression can contain numbers, operators (+, -, *, /), parentheses, and spaces."
+        }
+      },
+      "required": [
+        "expression"
+      ]
+    }
+  },
+  {
+    "name": "cancel_pending_order",
+    "description": "Cancel a pending order. If the order is already processed or delivered, it cannot be cancelled. The agent needs to explain the cancellation detail and ask for explicit user confirmation (yes/no) to proceed. If the user confirms, the order status will be changed to 'cancelled' and the payment will be refunded. The refund will be added to the user's gift card balance immediately if the payment was made using a gift card, otherwise the refund would take 5-7 business days to process. The function returns the order details after the cancellation. Order: The order details after the cancellation.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        },
+        "reason": {
+          "type": "STRING",
+          "description": "The reason for cancellation, which should be either 'no longer needed' or 'ordered by mistake'."
+        }
+      },
+      "required": [
+        "order_id",
+        "reason"
+      ]
+    }
+  },
+  {
+    "name": "exchange_delivered_order_items",
+    "description": "Exchange items in a delivered order to new items of the same product type. For a delivered order, return or exchange can be only done once by the agent. The agent needs to explain the exchange detail and ask for explicit user confirmation (yes/no) to proceed. Order: The order details after the exchange. ValueError: If the order is not delivered. ValueError: If the items to be exchanged do not exist. ValueError: If the new items do not exist or do not match the old items. ValueError: If the number of items to be exchanged does not match.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        },
+        "item_ids": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          },
+          "description": "The item ids to be exchanged, each such as '1008292230'. There could be duplicate items in the list."
+        },
+        "new_item_ids": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          },
+          "description": "The item ids to be exchanged for, each such as '1008292230'. There could be duplicate items in the list. Each new item id should match the item id in the same position and be of the same product."
+        },
+        "payment_method_id": {
+          "type": "STRING",
+          "description": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'. These can be looked up from the user or order details."
+        }
+      },
+      "required": [
+        "order_id",
+        "item_ids",
+        "new_item_ids",
+        "payment_method_id"
+      ]
+    }
+  },
+  {
+    "name": "find_user_id_by_name_zip",
+    "description": "Find user id by first name, last name, and zip code. If the user is not found, the function will return an error message. By default, find user id by email, and only call this function if the user is not found by email or cannot remember email. str: The user id if found, otherwise an error message. ValueError: If the user is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "first_name": {
+          "type": "STRING",
+          "description": "The first name of the customer, such as 'John'."
+        },
+        "last_name": {
+          "type": "STRING",
+          "description": "The last name of the customer, such as 'Doe'."
+        },
+        "zip": {
+          "type": "STRING",
+          "description": "The zip code of the customer, such as '12345'."
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "zip"
+      ]
+    }
+  },
+  {
+    "name": "find_user_id_by_email",
+    "description": "Find user id by email. If the user is not found, the function will return an error message. str: The user id if found, otherwise an error message. ValueError: If the user is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "email": {
+          "type": "STRING",
+          "description": "The email of the user, such as 'something@example.com'."
+        }
+      },
+      "required": [
+        "email"
+      ]
+    }
+  },
+  {
+    "name": "get_order_details",
+    "description": "Get the status and details of an order. Order: The order details. ValueError: If the order is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        }
+      },
+      "required": [
+        "order_id"
+      ]
+    }
+  },
+  {
+    "name": "get_product_details",
+    "description": "Get the inventory details of a product. Product: The product details. ValueError: If the product is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "product_id": {
+          "type": "STRING",
+          "description": "The product id, such as '6086499569'. Be careful the product id is different from the item id."
+        }
+      },
+      "required": [
+        "product_id"
+      ]
+    }
+  },
+  {
+    "name": "get_item_details",
+    "description": "Get the inventory details of an item. Variant: The item details. ValueError: If the item is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "item_id": {
+          "type": "STRING",
+          "description": "The item id, such as '6086499569'. Be careful the item id is different from the product id."
+        }
+      },
+      "required": [
+        "item_id"
+      ]
+    }
+  },
+  {
+    "name": "get_user_details",
+    "description": "Get the details of a user, including their orders. User: The user details. ValueError: If the user is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "user_id": {
+          "type": "STRING",
+          "description": "The user id, such as 'sara_doe_496'."
+        }
+      },
+      "required": [
+        "user_id"
+      ]
+    }
+  },
+  {
+    "name": "list_all_product_types",
+    "description": "List the name and product id of all product types. Each product type has a variety of different items with unique item ids and options. There are only 50 product types in the store. str: A JSON string mapping product names to their product IDs, sorted alphabetically by name.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {}
+    }
+  },
+  {
+    "name": "modify_pending_order_address",
+    "description": "Modify the shipping address of a pending order. The agent needs to explain the modification detail and ask for explicit user confirmation (yes/no) to proceed. Order: The order details after the modification. ValueError: If the order is not pending.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        },
+        "address1": {
+          "type": "STRING",
+          "description": "The first line of the address, such as '123 Main St'."
+        },
+        "address2": {
+          "type": "STRING",
+          "description": "The second line of the address, such as 'Apt 1' or ''."
+        },
+        "city": {
+          "type": "STRING",
+          "description": "The city, such as 'San Francisco'."
+        },
+        "state": {
+          "type": "STRING",
+          "description": "The state, such as 'CA'."
+        },
+        "country": {
+          "type": "STRING",
+          "description": "The country, such as 'USA'."
+        },
+        "zip": {
+          "type": "STRING",
+          "description": "The zip code, such as '12345'."
+        }
+      },
+      "required": [
+        "order_id",
+        "address1",
+        "address2",
+        "city",
+        "state",
+        "country",
+        "zip"
+      ]
+    }
+  },
+  {
+    "name": "modify_pending_order_items",
+    "description": "Modify items in a pending order to new items of the same product type. For a pending order, this function can only be called once. The agent needs to explain the exchange detail and ask for explicit user confirmation (yes/no) to proceed. Order: The order details after the modification. ValueError: If the order is not pending. ValueError: If the items to be modified do not exist. ValueError: If the new items do not exist or do not match the old items. ValueError: If the number of items to be modified does not match.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        },
+        "item_ids": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          },
+          "description": "The item ids to be modified, each such as '1008292230'. There could be duplicate items in the list."
+        },
+        "new_item_ids": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          },
+          "description": "The item ids to be modified for, each such as '1008292230'. There could be duplicate items in the list. Each new item id should match the item id in the same position and be of the same product."
+        },
+        "payment_method_id": {
+          "type": "STRING",
+          "description": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'. These can be looked up from the user or order details."
+        }
+      },
+      "required": [
+        "order_id",
+        "item_ids",
+        "new_item_ids",
+        "payment_method_id"
+      ]
+    }
+  },
+  {
+    "name": "modify_pending_order_payment",
+    "description": "Modify the payment method of a pending order. The agent needs to explain the modification detail and ask for explicit user confirmation (yes/no) to proceed. Order: The order details after the modification. ValueError: If the order is not pending. ValueError: If the payment method does not exist. ValueError: If the payment history has more than one payment. ValueError: If the new payment method is the same as the current one.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        },
+        "payment_method_id": {
+          "type": "STRING",
+          "description": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'. These can be looked up from the user or order details."
+        }
+      },
+      "required": [
+        "order_id",
+        "payment_method_id"
+      ]
+    }
+  },
+  {
+    "name": "modify_user_address",
+    "description": "Modify the default address of a user. The agent needs to explain the modification detail and ask for explicit user confirmation (yes/no) to proceed. User: The user details after the modification. ValueError: If the user is not found.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "user_id": {
+          "type": "STRING",
+          "description": "The user id, such as 'sara_doe_496'."
+        },
+        "address1": {
+          "type": "STRING",
+          "description": "The first line of the address, such as '123 Main St'."
+        },
+        "address2": {
+          "type": "STRING",
+          "description": "The second line of the address, such as 'Apt 1' or ''."
+        },
+        "city": {
+          "type": "STRING",
+          "description": "The city, such as 'San Francisco'."
+        },
+        "state": {
+          "type": "STRING",
+          "description": "The state, such as 'CA'."
+        },
+        "country": {
+          "type": "STRING",
+          "description": "The country, such as 'USA'."
+        },
+        "zip": {
+          "type": "STRING",
+          "description": "The zip code, such as '12345'."
+        }
+      },
+      "required": [
+        "user_id",
+        "address1",
+        "address2",
+        "city",
+        "state",
+        "country",
+        "zip"
+      ]
+    }
+  },
+  {
+    "name": "return_delivered_order_items",
+    "description": "Return some items of a delivered order. The order status will be changed to 'return requested'. The agent needs to explain the return detail and ask for explicit user confirmation (yes/no) to proceed. The user will receive follow-up email for how and where to return the item. Order: The order details after requesting the return. ValueError: If the order is not delivered. ValueError: If the payment method is not the original payment method or a gift card. ValueError: If the items to be returned do not exist.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "order_id": {
+          "type": "STRING",
+          "description": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id."
+        },
+        "item_ids": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          },
+          "description": "The item ids to be returned, each such as '1008292230'. There could be duplicate items in the list."
+        },
+        "payment_method_id": {
+          "type": "STRING",
+          "description": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'. These can be looked up from the user or order details."
+        }
+      },
+      "required": [
+        "order_id",
+        "item_ids",
+        "payment_method_id"
+      ]
+    }
+  },
+  {
+    "name": "transfer_to_human_agents",
+    "description": "Transfer the user to a human agent, with a summary of the user's issue. Only transfer if -  the user explicitly asks for a human agent -  given the policy and the available tools, you cannot solve the user's issue. A message indicating the user has been transferred to a human agent.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "summary": {
+          "type": "STRING",
+          "description": "A summary of the user's issue."
+        }
+      },
+      "required": [
+        "summary"
+      ]
+    }
+  }
+]
