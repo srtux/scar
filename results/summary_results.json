@@ -1,0 +1,111 @@
+{
+  "exp1_failure_detection": {
+    "total_sims": 400,
+    "total_fails": 188,
+    "total_passes": 212,
+    "silent_fails": 171,
+    "silent_fail_pct": 0.9095744680851063,
+    "tool_recall": 0.09042553191489362,
+    "pushback_recall": 0.6223404255319149,
+    "dual_recall": 0.6542553191489362,
+    "silent_pushback_recall": 0.6198830409356725
+  },
+  "exp2_retention_budget": {
+    "0.1": {
+      "fifo": {
+        "proc_retained": 14,
+        "proc_total": 14,
+        "fact_retained": 16,
+        "fact_total": 32
+      },
+      "mem0": {
+        "proc_retained": 4.8999999999999995,
+        "proc_total": 14,
+        "fact_retained": 32,
+        "fact_total": 32
+      },
+      "tool_outcome": {
+        "proc_retained": 2,
+        "proc_total": 14,
+        "fact_retained": 6.400000000000001,
+        "fact_total": 32
+      },
+      "scar": {
+        "proc_retained": 14,
+        "proc_total": 14,
+        "fact_retained": 32,
+        "fact_total": 32
+      }
+    },
+    "0.25": {
+      "fifo": {
+        "proc_retained": 14,
+        "proc_total": 14,
+        "fact_retained": 16,
+        "fact_total": 32
+      },
+      "mem0": {
+        "proc_retained": 4.8999999999999995,
+        "proc_total": 14,
+        "fact_retained": 32,
+        "fact_total": 32
+      },
+      "tool_outcome": {
+        "proc_retained": 2,
+        "proc_total": 14,
+        "fact_retained": 6.400000000000001,
+        "fact_total": 32
+      },
+      "scar": {
+        "proc_retained": 14,
+        "proc_total": 14,
+        "fact_retained": 32,
+        "fact_total": 32
+      }
+    },
+    "0.5": {
+      "fifo": {
+        "proc_retained": 14,
+        "proc_total": 14,
+        "fact_retained": 16,
+        "fact_total": 32
+      },
+      "mem0": {
+        "proc_retained": 4.8999999999999995,
+        "proc_total": 14,
+        "fact_retained": 32,
+        "fact_total": 32
+      },
+      "tool_outcome": {
+        "proc_retained": 2,
+        "proc_total": 14,
+        "fact_retained": 6.400000000000001,
+        "fact_total": 32
+      },
+      "scar": {
+        "proc_retained": 14,
+        "proc_total": 14,
+        "fact_retained": 32,
+        "fact_total": 32
+      }
+    }
+  },
+  "exp3_repeat_mistakes": {
+    "zero_shot": {
+      "repeated": 20,
+      "total": 48
+    },
+    "raw_history": {
+      "repeated": 20,
+      "total": 48
+    },
+    "mem0_facts": {
+      "repeated": 20,
+      "total": 48
+    },
+    "scar": {
+      "repeated": 0,
+      "total": 48
+    }
+  }
+}

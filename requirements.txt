@@ -1,0 +1,5 @@
+# Python dependencies for SCAR
+
+# Core runtime is stdlib-only.
+# Optional for enhanced evaluation / LLM judging:
+pytest>=7.0.0
