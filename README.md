@@ -100,6 +100,32 @@ Two empirical trade-offs warrant attention:
 - **Medium-horizon summarization:** On 8-session timelines where a 506-token Rolling Summary fits well inside a 2,084-token budget, Rolling Summary achieves 95.7% overall F1 compared to 92.3% for SCAR, though Rolling Summary loses more early static facts (88.4% vs. 97.9% F1) and uses 2.8x as many tokens.
 - **Domain card specificity:** In Experiment 3, SCAR cuts Retail repeat mistakes in half (38.7% to 19.4%) and reduces tool-parameter errors from 31.4% to 17.1%, whereas on the smaller 25-task Airline folds, retrieved cards still over-trigger cautions on borderline eligibility cases (38.1% vs. 23.8% zero-shot, compared to 47.6% for Raw RAG and Atomic Facts). Tighter precondition scoping during card retrieval is an active next step.
 
+## Emotion-Shift Memory
+
+`src/esm/` provides a standalone two-module implementation (**Emotion-Shift Memory**) designed around a plain Markdown rulebook (`MEMORY.md`, capped at 400 subword tokens) and four human-feedback shift detectors (`VADER`, `GoEmotions`, local open-weights `Laya` ModernBERT, and `Gemini 3.5 Flash-Lite`):
+
+- **Silent Failure Rate (`tau2-bench`, `n = 2,624`):** Across all four public `tau2-bench` model logs (Claude 3.7 Sonnet, GPT-4.1, GPT-4.1-mini, and o4-mini), **669 of 869 failed conversations (77.0%)** complete with zero software tool errors (88.3% on Airline and 68.6% on Retail).
+- **Stage 1 (Human Shift Detection):** Evaluated on 600 balanced human-annotated `microsoft/WildFeedback` dialogues (`2,709` reaction turns) and 176 multi-turn English `OpenHands` coding sessions:
+
+| Shift Detector | WildFeedback Fixed F1 | WildFeedback 4-Way Acc | OpenHands Unresolved F1 | Latency / Turn |
+| :--- | :---: | :---: | :---: | :---: |
+| `VADER` (Word Lexicon) | 45.0% | 36.3% | 13.3% | 1.7 ms |
+| `GoEmotions` (`roberta-base-go_emotions`) | 49.7% | 41.2% | 24.2% | 22 ms |
+| `Laya` (`convaiinnovations/laya` CPU) | **59.3%** | 51.3% | 54.7% | 242 ms |
+| `Gemini 3.5 Flash-Lite` | 51.0% | **55.0%** | **72.0%** | 144 ms |
+
+- **Stage 2 (5-Condition `MEMORY.md` Ablation on Unseen Tasks):** Evaluated across a 2-fold disjoint task split of `tau2-bench` Airline and Retail (`59` held-out failure decision points plus `31` routine passing controls under a 400-token `MEMORY.md` cap):
+
+| Memory Condition (`<= 400` tokens) | Held-Out Mistakes | Repeat Error Rate | Airline Rate | Retail Rate | Control Pass |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| `No Memory` (Zero-Shot) | 26 / 59 | 44.1% | 50.0% | 40.0% | 87.1% |
+| `Routine Chats` (`Calm -> Satisfied`) | 29 / 59 | 49.2% | 62.5% | 40.0% | n/a |
+| `Negative-Only` (`VADER` Unresolved) | 23 / 59 | 39.0% | 50.0% | 31.4% | 83.9% |
+| `All Chats` (Unfiltered Notes) | 21 / 59 | 35.6% | 50.0% | 25.7% | n/a |
+| **Emotion-Shift (`Frustrated -> Fixed`)** | **16 / 59** | **27.1%** | **33.3%** | **22.9%** | **83.9%** |
+
+Emotion-Shift Memory reduces repeat mistakes by **38.5%** relative to `No Memory` (`44.1%` to `27.1%`) and **30.4%** relative to `Negative-Only` (`39.0%` to `27.1%`), improving both Airline (`50.0%` to `33.3%`) and Retail (`40.0%` to `22.9%`).
+
 ## Reproduction
 
 ```bash
@@ -108,10 +134,17 @@ cd scar
 pip install -r requirements.txt
 export GEMINI_API_KEY="your-api-key"
 pytest tests/ -q
+
+# Run core SCAR experiments
 python3 experiments/run_all.py
+
+# Download WildFeedback (for Stage 1) and run Emotion-Shift Memory + 300-DPI poster charts
+hf download microsoft/WildFeedback sat_dsat_annotation.json --repo-type dataset --local-dir data/wildfeedback
+python3 experiments/run_esm.py --stage all --workers 16
+python3 experiments/plot_poster_charts.py
 ```
 
-Running `experiments/run_all.py` executes all three experiments, writes per-trial diagnostics to `results/exp1_details.json`, `results/exp2_details.json`, and `results/exp3_details.json`, and generates `results/summary_results.json` and `results/SUMMARY_RESULTS.md`.
+Running `experiments/run_all.py` executes all three SCAR experiments and generates `results/summary_results.json` and `results/SUMMARY_RESULTS.md`. Running `experiments/run_esm.py` and `experiments/plot_poster_charts.py` writes `results/esm_results.json` and renders 300-DPI `PNG` and `PDF` figures under `results/charts/`.
 
 ## Repository Layout
 
@@ -119,26 +152,35 @@ Running `experiments/run_all.py` executes all three experiments, writes per-tria
 scar/
 ├── data/
 │   ├── openhands/                 # Public OpenHands human-feedback coding trajectories (n=275)
-│   └── tau2/                      # Public tau2-bench Airline & Retail trajectories + tool schemas (n=1,312)
+│   └── tau2/                      # Public tau2-bench Airline & Retail trajectories + tool schemas (n=2,624)
 ├── experiments/
 │   ├── exp1_failure_detection.py  # Silent failure & transition detector evaluation (n=1,587)
 │   ├── exp2_retention_budget.py   # Longitudinal 8-session retention at 10%, 25%, 50% token budgets
 │   ├── exp3_repeat_mistakes.py    # 2-fold held-out cross-task tool-calling replay (n=52 + 30 controls)
-│   └── run_all.py                 # End-to-end runner & summary generator
+│   ├── plot_poster_charts.py      # 300-DPI poster chart generator (Charts 1-4 PNG + PDF)
+│   ├── run_all.py                 # End-to-end SCAR runner & summary generator
+│   └── run_esm.py                 # Stage 1 & Stage 2 Emotion-Shift Memory benchmark runner
 ├── results/
+│   ├── charts/                    # Print-ready 300-DPI PNG and PDF figures (Charts 1-4)
+│   ├── esm_results.json           # Stage 1 & Stage 2 Emotion-Shift Memory metrics & sample MEMORY.md
 │   ├── exp1_details.json
 │   ├── exp2_details.json
 │   ├── exp3_details.json
 │   ├── summary_results.json
 │   └── SUMMARY_RESULTS.md
-├── src/scar/
-│   ├── baselines.py               # FIFO, Rolling Summary, Mem0, Importance, Sentiment, Tool-Only, Raw RAG
-│   ├── consolidator.py            # Oracle stripper, struggle-card synthesis & counterfactual replay gate
-│   ├── detector.py                # Tool-error, regex, sentiment, pushback & SCAR transition detectors
-│   ├── llm.py                     # Rate-limited Gemini REST + SQLite cache client
-│   ├── memory.py                  # Slot-indexed directive store + contrastive playbook retrieval
-│   └── tokens.py                  # Deterministic subword token accounting
+├── src/
+│   ├── esm/
+│   │   ├── detectors.py           # VADER, GoEmotions, Laya (ModernBERT), and Flash-Lite shift gates
+│   │   └── memory_md.py           # Plain Markdown MEMORY.md store, contrastive extractor & replay verifier
+│   └── scar/
+│       ├── baselines.py           # FIFO, Rolling Summary, Mem0, Importance, Sentiment, Tool-Only, Raw RAG
+│       ├── consolidator.py        # Oracle stripper, struggle-card synthesis & counterfactual replay gate
+│       ├── detector.py            # Tool-error, regex, sentiment, pushback & SCAR transition detectors
+│       ├── llm.py                 # Rate-limited Gemini REST + SQLite cache client
+│       ├── memory.py              # Slot-indexed directive store + contrastive playbook retrieval
+│       └── tokens.py              # Deterministic subword token accounting
 └── tests/
+    ├── test_esm.py                # Unit tests for shift gates, oracle stripping, and 400-token MEMORY.md cap
     ├── test_oss_cleanliness.py    # Verifies zero internal refs, hardcoded keys, or oracle leaks
     └── test_scar_core.py          # Core unit tests for supersession, quarantine, and token caps
 ```

@@ -376,7 +376,7 @@ class LLMClient:
             "model": use_model,
             "sys": system_instruction,
             "messages": messages,
-            "tools": [t.get("name") for t in tools],
+            "tools": tools,
             "temp": temperature,
         }
         cache_key = hashlib.sha256(json.dumps(key_payload, sort_keys=True).encode()).hexdigest()

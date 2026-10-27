@@ -1,5 +1,10 @@
-# Python dependencies for SCAR
+# Python dependencies for SCAR and Emotion-Shift Memory (ESM)
 
-# Core runtime is stdlib-only.
-# Optional for enhanced evaluation / LLM judging:
+# Core SCAR/ESM storage & Gemini/OpenAI REST client use Python stdlib only.
+# Test runner, local shift-detector gates, and poster chart generation:
 pytest>=7.0.0
+matplotlib>=3.7.0
+vaderSentiment>=3.3.2
+torch>=2.2.0
+transformers>=4.40.0
+laya>=0.4.12

@@ -1,0 +1,465 @@
+{
+  "chart1_silent_failures": {
+    "airline": {
+      "total_runs": 800,
+      "failed_runs": 369,
+      "silent_failures": 326,
+      "passing_with_tool_error": 31,
+      "silent_failure_rate": 0.8835
+    },
+    "retail": {
+      "total_runs": 1824,
+      "failed_runs": 500,
+      "silent_failures": 343,
+      "passing_with_tool_error": 289,
+      "silent_failure_rate": 0.686
+    },
+    "combined": {
+      "total_runs": 2624,
+      "failed_runs": 869,
+      "silent_failures": 669,
+      "passing_with_tool_error": 320,
+      "silent_failure_rate": 0.7699
+    }
+  },
+  "stage1_shift_detection": {
+    "elapsed_seconds": 930.1,
+    "wildfeedback": {
+      "total_threads": 600,
+      "per_quadrant": 150,
+      "total_reaction_turns": 2709,
+      "detectors": {
+        "VADER": {
+          "fixed_precision": 0.4348,
+          "fixed_recall": 0.4667,
+          "fixed_f1": 0.4502,
+          "macro_f1": 0.3311,
+          "accuracy_4way": 0.3633,
+          "ms_per_turn": 1.742,
+          "ms_per_chat": 6.69,
+          "per_quadrant": {
+            "FIXED": {
+              "precision": 0.4348,
+              "recall": 0.4667,
+              "f1": 0.4502
+            },
+            "UNFIXED": {
+              "precision": 0.4318,
+              "recall": 0.1267,
+              "f1": 0.1959
+            },
+            "BROKEN": {
+              "precision": 0.5652,
+              "recall": 0.1733,
+              "f1": 0.2653
+            },
+            "ROUTINE": {
+              "precision": 0.2951,
+              "recall": 0.6867,
+              "f1": 0.4128
+            }
+          },
+          "confusion_matrix": {
+            "FIXED": {
+              "FIXED": 70,
+              "UNFIXED": 6,
+              "BROKEN": 6,
+              "ROUTINE": 68
+            },
+            "UNFIXED": {
+              "FIXED": 33,
+              "UNFIXED": 19,
+              "BROKEN": 9,
+              "ROUTINE": 89
+            },
+            "BROKEN": {
+              "FIXED": 19,
+              "UNFIXED": 16,
+              "BROKEN": 26,
+              "ROUTINE": 89
+            },
+            "ROUTINE": {
+              "FIXED": 39,
+              "UNFIXED": 3,
+              "BROKEN": 5,
+              "ROUTINE": 103
+            }
+          }
+        },
+        "GoEmotions": {
+          "fixed_precision": 0.435,
+          "fixed_recall": 0.58,
+          "fixed_f1": 0.4971,
+          "macro_f1": 0.394,
+          "accuracy_4way": 0.4117,
+          "ms_per_turn": 22.179,
+          "ms_per_chat": 85.25,
+          "per_quadrant": {
+            "FIXED": {
+              "precision": 0.435,
+              "recall": 0.58,
+              "f1": 0.4971
+            },
+            "UNFIXED": {
+              "precision": 0.3933,
+              "recall": 0.2333,
+              "f1": 0.2929
+            },
+            "BROKEN": {
+              "precision": 0.6604,
+              "recall": 0.2333,
+              "f1": 0.3448
+            },
+            "ROUTINE": {
+              "precision": 0.3488,
+              "recall": 0.6,
+              "f1": 0.4412
+            }
+          },
+          "confusion_matrix": {
+            "FIXED": {
+              "FIXED": 87,
+              "UNFIXED": 9,
+              "BROKEN": 4,
+              "ROUTINE": 50
+            },
+            "UNFIXED": {
+              "FIXED": 47,
+              "UNFIXED": 35,
+              "BROKEN": 10,
+              "ROUTINE": 58
+            },
+            "BROKEN": {
+              "FIXED": 16,
+              "UNFIXED": 39,
+              "BROKEN": 35,
+              "ROUTINE": 60
+            },
+            "ROUTINE": {
+              "FIXED": 50,
+              "UNFIXED": 6,
+              "BROKEN": 4,
+              "ROUTINE": 90
+            }
+          }
+        },
+        "Laya": {
+          "fixed_precision": 0.5933,
+          "fixed_recall": 0.5933,
+          "fixed_f1": 0.5933,
+          "macro_f1": 0.4915,
+          "accuracy_4way": 0.5133,
+          "ms_per_turn": 241.912,
+          "ms_per_chat": 1073.49,
+          "per_quadrant": {
+            "FIXED": {
+              "precision": 0.5933,
+              "recall": 0.5933,
+              "f1": 0.5933
+            },
+            "UNFIXED": {
+              "precision": 0.6491,
+              "recall": 0.2467,
+              "f1": 0.3575
+            },
+            "BROKEN": {
+              "precision": 0.7463,
+              "recall": 0.3333,
+              "f1": 0.4608
+            },
+            "ROUTINE": {
+              "precision": 0.4049,
+              "recall": 0.88,
+              "f1": 0.5546
+            }
+          },
+          "confusion_matrix": {
+            "FIXED": {
+              "FIXED": 89,
+              "UNFIXED": 7,
+              "BROKEN": 1,
+              "ROUTINE": 53
+            },
+            "UNFIXED": {
+              "FIXED": 34,
+              "UNFIXED": 37,
+              "BROKEN": 15,
+              "ROUTINE": 64
+            },
+            "BROKEN": {
+              "FIXED": 11,
+              "UNFIXED": 12,
+              "BROKEN": 50,
+              "ROUTINE": 77
+            },
+            "ROUTINE": {
+              "FIXED": 16,
+              "UNFIXED": 1,
+              "BROKEN": 1,
+              "ROUTINE": 132
+            }
+          }
+        },
+        "Flash-Lite": {
+          "fixed_precision": 0.619,
+          "fixed_recall": 0.4333,
+          "fixed_f1": 0.5098,
+          "macro_f1": 0.528,
+          "accuracy_4way": 0.55,
+          "ms_per_turn": 143.508,
+          "ms_per_chat": 513.49,
+          "per_quadrant": {
+            "FIXED": {
+              "precision": 0.619,
+              "recall": 0.4333,
+              "f1": 0.5098
+            },
+            "UNFIXED": {
+              "precision": 0.5141,
+              "recall": 0.6067,
+              "f1": 0.5566
+            },
+            "BROKEN": {
+              "precision": 0.5316,
+              "recall": 0.28,
+              "f1": 0.3668
+            },
+            "ROUTINE": {
+              "precision": 0.5523,
+              "recall": 0.88,
+              "f1": 0.6787
+            }
+          },
+          "confusion_matrix": {
+            "FIXED": {
+              "FIXED": 65,
+              "UNFIXED": 23,
+              "BROKEN": 8,
+              "ROUTINE": 54
+            },
+            "UNFIXED": {
+              "FIXED": 10,
+              "UNFIXED": 91,
+              "BROKEN": 28,
+              "ROUTINE": 21
+            },
+            "BROKEN": {
+              "FIXED": 18,
+              "UNFIXED": 58,
+              "BROKEN": 42,
+              "ROUTINE": 32
+            },
+            "ROUTINE": {
+              "FIXED": 12,
+              "UNFIXED": 5,
+              "BROKEN": 1,
+              "ROUTINE": 132
+            }
+          }
+        }
+      }
+    },
+    "openhands_multiturn": {
+      "total_sessions": 176,
+      "detectors": {
+        "VADER": {
+          "total_sessions": 176,
+          "unresolved_precision": 0.2727,
+          "unresolved_recall": 0.0882,
+          "unresolved_f1": 0.1333,
+          "accuracy": 0.5568,
+          "positive_recoveries_kept_as_fixed": 16,
+          "quadrant_counts": {
+            "ROUTINE": 127,
+            "FIXED": 27,
+            "BROKEN": 17,
+            "UNFIXED": 5
+          }
+        },
+        "GoEmotions": {
+          "total_sessions": 176,
+          "unresolved_precision": 0.4783,
+          "unresolved_recall": 0.1618,
+          "unresolved_f1": 0.2418,
+          "accuracy": 0.608,
+          "positive_recoveries_kept_as_fixed": 18,
+          "quadrant_counts": {
+            "ROUTINE": 121,
+            "FIXED": 32,
+            "BROKEN": 19,
+            "UNFIXED": 4
+          }
+        },
+        "Laya": {
+          "total_sessions": 176,
+          "unresolved_precision": 0.5833,
+          "unresolved_recall": 0.5147,
+          "unresolved_f1": 0.5469,
+          "accuracy": 0.6705,
+          "positive_recoveries_kept_as_fixed": 57,
+          "quadrant_counts": {
+            "ROUTINE": 35,
+            "UNFIXED": 51,
+            "FIXED": 81,
+            "BROKEN": 9
+          }
+        },
+        "Flash-Lite": {
+          "total_sessions": 176,
+          "unresolved_precision": 0.6585,
+          "unresolved_recall": 0.7941,
+          "unresolved_f1": 0.72,
+          "accuracy": 0.7614,
+          "positive_recoveries_kept_as_fixed": 63,
+          "quadrant_counts": {
+            "UNFIXED": 43,
+            "FIXED": 73,
+            "BROKEN": 39,
+            "ROUTINE": 21
+          }
+        }
+      }
+    }
+  },
+  "stage2_mistake_learning": {
+    "elapsed_seconds": 519.12,
+    "memory_budget_tokens": 400,
+    "fold_quadrant_counts": {
+      "airline_fold_A": {
+        "UNFIXED": 37,
+        "ROUTINE": 37,
+        "FIXED": 19,
+        "BROKEN": 7
+      },
+      "airline_fold_B": {
+        "ROUTINE": 33,
+        "UNFIXED": 28,
+        "FIXED": 28,
+        "BROKEN": 11
+      },
+      "retail_fold_A": {
+        "ROUTINE": 59,
+        "FIXED": 29,
+        "UNFIXED": 9,
+        "BROKEN": 3
+      },
+      "retail_fold_B": {
+        "ROUTINE": 55,
+        "FIXED": 29,
+        "BROKEN": 8,
+        "UNFIXED": 8
+      }
+    },
+    "conditions": {
+      "no_memory": {
+        "total_heldout_trials": 59,
+        "mistakes_repeated": 26,
+        "mistakes_avoided": 33,
+        "repeat_error_rate": 0.4407,
+        "airline_repeat_rate": 0.5,
+        "retail_repeat_rate": 0.4,
+        "avg_memory_tokens": 0.0,
+        "avg_injected_tokens": 0.0
+      },
+      "routine_chats": {
+        "total_heldout_trials": 59,
+        "mistakes_repeated": 29,
+        "mistakes_avoided": 30,
+        "repeat_error_rate": 0.4915,
+        "airline_repeat_rate": 0.625,
+        "retail_repeat_rate": 0.4,
+        "avg_memory_tokens": 400.0,
+        "avg_injected_tokens": 314.8
+      },
+      "negative_only": {
+        "total_heldout_trials": 59,
+        "mistakes_repeated": 23,
+        "mistakes_avoided": 36,
+        "repeat_error_rate": 0.3898,
+        "airline_repeat_rate": 0.5,
+        "retail_repeat_rate": 0.3143,
+        "avg_memory_tokens": 123.8,
+        "avg_injected_tokens": 123.8
+      },
+      "all_chats": {
+        "total_heldout_trials": 59,
+        "mistakes_repeated": 21,
+        "mistakes_avoided": 38,
+        "repeat_error_rate": 0.3559,
+        "airline_repeat_rate": 0.5,
+        "retail_repeat_rate": 0.2571,
+        "avg_memory_tokens": 400.0,
+        "avg_injected_tokens": 308.7
+      },
+      "emotion_shift": {
+        "total_heldout_trials": 59,
+        "mistakes_repeated": 16,
+        "mistakes_avoided": 43,
+        "repeat_error_rate": 0.2712,
+        "airline_repeat_rate": 0.3333,
+        "retail_repeat_rate": 0.2286,
+        "avg_memory_tokens": 400.0,
+        "avg_injected_tokens": 332.6
+      }
+    },
+    "non_regression_controls": {
+      "no_memory": {
+        "total_controls": 31,
+        "passed": 27,
+        "pass_rate": 0.871
+      },
+      "emotion_shift": {
+        "total_controls": 31,
+        "passed": 26,
+        "pass_rate": 0.8387
+      },
+      "negative_only": {
+        "total_controls": 31,
+        "passed": 26,
+        "pass_rate": 0.8387
+      }
+    },
+    "learning_curve": {
+      "chat_counts": [
+        0,
+        25,
+        50,
+        100
+      ],
+      "series": {
+        "negative_only": [
+          0.4407,
+          0.4576,
+          0.4576,
+          0.3898
+        ],
+        "all_chats": [
+          0.4407,
+          0.339,
+          0.3898,
+          0.3559
+        ],
+        "emotion_shift": [
+          0.4407,
+          0.2881,
+          0.2542,
+          0.2712
+        ]
+      }
+    },
+    "relative_reduction_vs_no_memory": 0.3846,
+    "relative_reduction_vs_negative_only": 0.3043,
+    "sample_memory_md": {
+      "airline": {
+        "emotion_shift": "# MEMORY.md (Learned Rules)\n- When Cancelling non-business flight booked over 24 hours ago due to change of plans: AVOID calling cancel_reservation despite user accepting no refund; INSTEAD refuse cancellation policy-wise since conditions for valid cancellation are not met.\n- When Customer requests compensation without an airline cancellation or flight delay complaint: AVOID calling send_certificate or offering goodwill travel certificates for personal emergencies; INSTEAD decline compensation strictly citing policy requiring airline cancellation or delay complaints.\n- When Customer requests compensation for a delayed flight without changing or cancelling the reservation: AVOID Issuing a travel certificate via send_certificate or offering delay compensation unconditionally; INSTEAD Refuse delay compensation unless customer also changes or cancels the affected reservation.\n- When User requests to add travel insurance to an already confirmed reservation: AVOID Attempting modification tool calls or transferring to human agents for exceptions; INSTEAD Refuse firmly stating travel insurance cannot be added after initial booking.\n- When Customer requests to change or upgrade the cabin class for only one passenger: AVOID Attempting to modify the cabin class for a single passenger in a multi-passenger reservation; INSTEAD Refuse request because all passengers on a reservation must share the same cabin class.\n- When a multi-passenger reservation requests different cabin classes across passengers: AVOID calculating split-cabin fares or booking separate reservations without explaining policy; INSTEAD state policy requires all reservation passengers fly in the same cabin class.\n- When customer requests applying multiple travel certificates to pay for a flight booking: AVOID attempting to apply more than one certificate or booking with multiple certificates; INSTEAD enforce maximum of one travel certificate per reservation and charge remainder to card.",
+        "negative_only": "# MEMORY.md (Learned Rules)\n- Customer Sophia Silva (user ID sophia_silva_7557) requested compensation for a canceled business flight from New York to Chicago earlier this month. The assistant could not find the reservation in the system and transferred the user to a human agent.\n- Customer requested a refund for flight insurance due to dissatisfaction with service; assistant denied based on policy, and after the customer asked for an exception/escalation, transferred them to a human agent.\n- Customer complained about a canceled business flight causing them to miss a crucial meeting and requested compensation exceeding a $100 certificate; the assistant transferred them to a human agent after gathering partial user details.\n- Customer complained about a delayed LAX-MIA flight. Assistant issued a $150 goodwill certificate for 3 passengers, but customer later corrected the count to 2 passengers.\n- Customer (sophia_silva_7557) requested compensation for a canceled business flight from New York to Chicago in early May that caused her to miss a meeting, expressing frustration over the lost opportunity while the assistant attempted to locate the unlisted reservation.",
+        "all_chats": "# MEMORY.md (Learned Rules)\n- Customer requested to cancel reservation EHGLP3 (Basic Economy, no insurance), expressed concern over a lack of refund, and asked to be transferred to a human agent.\n- Customer requested compensation for a delayed flight on their recent reservation (4OG6T3) due to inconvenience.\n- Customer requested compensation for a canceled business flight from Chicago to Philadelphia earlier this month that caused her to miss a meeting. The assistant found an economy reservation instead, leading to a dispute over the ticket class, and the customer expressed frustration over not receiving compensation.\n- Customer Sophia Taylor (ID: sophia_taylor_9065) requested to add travel insurance to her family booking (PEP4E0), but the assistant repeatedly stated system policy prohibits adding insurance post-booking.\n- Customer Sophia Silva (user ID sophia_silva_7557) booked two economy tickets on flight HAT271 from ORD to PHL for May 26 for herself and Kevin Smith, using certificate #8045380.\n- Liam requested to change his outbound flight from IAH to SEA to May 24 and upgrade to business class. After learning of the policy requiring the same cabin class across all flights, he asked for the total cost difference to upgrade both outbound and return flights.\n- Customer Chen Lee (user ID: chen_lee_6825, reservation YAX4DR) modified their reservation to upgrade Noah Hernandez to business class, kept themselves in economy, added 2 checked bags using Gold membership, and paid with card ending 9990.\n- Customer Aarav (user ID: aarav_garcia_1177, reservation M05KNL) changed their Atlanta to Philadelphia flight to the next day (May 24, 2024), switched from business to economy, and received a refund to their original gift card."
+      },
+      "retail": {
+        "emotion_shift": "# MEMORY.md (Learned Rules)\n- When Customer requests to return or cancel only specific items from a pending order: AVOID Attempting partial item cancellations or calling return tools on a pending order; INSTEAD Explain pending orders cannot be partially cancelled; offer full cancellation or product variant modification.\n- When Customer requests splitting order payment across multiple payment methods or cards: AVOID Attempting to split payment methods or calling modify_pending_order_payment with multiple cards; INSTEAD Refuse split payments because only a single alternate payment method is permitted.\n- When Customer requests cancelling or removing a single item from a multi-item pending order: AVOID Attempting partial item cancellation or calling cancel order tools on the order; INSTEAD Explain item removal is unsupported; offer modifying items or cancelling the entire order.\n- When Customer requests modifying or exchanging an item to a completely different product type: AVOID attempting item modification or exchange tools across different product categories; INSTEAD refuse the request and explain items can only be changed to different product options.\n- When modifying a pending order address or items before receiving user confirmation: AVOID calling modify_pending_order_address or modify_pending_order_items without obtaining explicit user confirmation first; INSTEAD list the change details and require explicit user confirmation before calling modification tools.\n- When User requests refund for delivered order return to a non-original payment method: AVOID Claiming refunds must only go to the original payment method; INSTEAD Explain refunds can go to original payment method or existing gift card.\n- When Customer requests an exchange for an item in an order with pending status: AVOID Attempting exchange tools or insisting on waiting for delivery before modifying items; INSTEAD Use modify_pending_order_items to swap options after user confirmation and payment method verification.",
+        "negative_only": "# MEMORY.md (Learned Rules)\n- Customer requested to return all orders with specific refund methods (swapped payment methods), expressed frustration, refused confirmation, and was transferred to a human agent.\n- Customer requested to return non-gaming items from two orders and wanted a PayPal refund. Agent processed the refund to the original credit card due to system policy, prompting the customer to object and request a human agent.\n- Customer Mia Garcia requested to return all items from two orders and swap their refund payment methods, but became frustrated with the summary and demanded a human agent, resulting in a transfer.\n- Customer Mia requested to return multiple items from order #W5490111 while keeping the keyboard. Frustrated that the refund could not go to PayPal, she requested a transfer to a human agent.",
+        "all_chats": "# MEMORY.md (Learned Rules)\n- Customer Yusuf Rossi (order W2378156) requested to exchange a linear-switch keyboard for a clicky one and an Apple HomeKit thermostat for a Google Home compatible one. The assistant processed the exchanges.\n- Customer Yusuf Rossi (zip 19122) inquired about available t-shirt options and requested to return a cleaner, headphone, and smart watch for a refund to his Mastercard ending in 2478.\n- Customer Yusuf Rossi (zip 19122) asked about available t-shirt options and requested to update pending t-shirt orders to purple, size small, v-neck, and polyester; the assistant located the account by name and zip, verified pending orders, and began modifying them.\n- Customer Mei Kovacs (zip 28236) exchanged her desk lamp for a silver, low brightness, battery-powered model, agreeing to use PayPal for any price difference.\n- Customer Mei Kovacs exchanged a water bottle for a 1000ml stainless steel one and a desk lamp for a high brightness USB-powered option from order #W6390527.\n- Customer requested to return all orders with specific refund methods (swapped payment methods), expressed frustration, refused confirmation, and was transferred to a human agent.\n- Customer requested to return non-gaming items from two orders and wanted a PayPal refund. Agent processed the refund to the original credit card due to system policy, prompting the customer to object and request a human agent.\n- The customer requested to return a mechanical keyboard and a gaming mouse from delivered orders and preferred refunds to their original payment methods; both returns were successfully processed.\n- Customer Fatima Johnson (zip 78712) requested to cancel two pending orders and return a smart watch from a delivered order, preferring the refund to her PayPal account."
+      }
+    }
+  }
+}

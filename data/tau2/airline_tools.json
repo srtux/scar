@@ -28,21 +28,68 @@
         "flights": {
           "type": "ARRAY",
           "items": {
-            "type": "STRING"
+            "type": "OBJECT",
+            "properties": {
+              "flight_number": {
+                "type": "STRING",
+                "description": "Flight number, such as 'HAT001'."
+              },
+              "date": {
+                "type": "STRING",
+                "description": "Flight date in 'YYYY-MM-DD' format, such as '2024-05-01'."
+              }
+            },
+            "required": [
+              "flight_number",
+              "date"
+            ]
           },
           "description": "An array of objects containing details about each piece of flight."
         },
         "passengers": {
           "type": "ARRAY",
           "items": {
-            "type": "STRING"
+            "type": "OBJECT",
+            "properties": {
+              "first_name": {
+                "type": "STRING",
+                "description": "Passenger's first name."
+              },
+              "last_name": {
+                "type": "STRING",
+                "description": "Passenger's last name."
+              },
+              "dob": {
+                "type": "STRING",
+                "description": "Date of birth in 'YYYY-MM-DD' format."
+              }
+            },
+            "required": [
+              "first_name",
+              "last_name",
+              "dob"
+            ]
           },
           "description": "An array of objects containing details about each passenger."
         },
         "payment_methods": {
           "type": "ARRAY",
           "items": {
-            "type": "STRING"
+            "type": "OBJECT",
+            "properties": {
+              "payment_id": {
+                "type": "STRING",
+                "description": "Payment ID from user profile, such as 'credit_card_7815826', 'gift_card_7815826', or 'certificate_7815826'."
+              },
+              "amount": {
+                "type": "INTEGER",
+                "description": "Payment amount for this payment method."
+              }
+            },
+            "required": [
+              "payment_id",
+              "amount"
+            ]
           },
           "description": "An array of objects containing details about each payment method."
         },
@@ -283,7 +330,21 @@
         "flights": {
           "type": "ARRAY",
           "items": {
-            "type": "STRING"
+            "type": "OBJECT",
+            "properties": {
+              "flight_number": {
+                "type": "STRING",
+                "description": "Flight number, such as 'HAT001'."
+              },
+              "date": {
+                "type": "STRING",
+                "description": "Flight date in 'YYYY-MM-DD' format, such as '2024-05-01'."
+              }
+            },
+            "required": [
+              "flight_number",
+              "date"
+            ]
           },
           "description": "An array of objects containing details about each piece of flight in the ENTIRE new reservation. Even if the a flight segment is not changed, it should still be included in the array."
         },
@@ -313,7 +374,26 @@
         "passengers": {
           "type": "ARRAY",
           "items": {
-            "type": "STRING"
+            "type": "OBJECT",
+            "properties": {
+              "first_name": {
+                "type": "STRING",
+                "description": "Passenger's first name."
+              },
+              "last_name": {
+                "type": "STRING",
+                "description": "Passenger's last name."
+              },
+              "dob": {
+                "type": "STRING",
+                "description": "Date of birth in 'YYYY-MM-DD' format."
+              }
+            },
+            "required": [
+              "first_name",
+              "last_name",
+              "dob"
+            ]
           },
           "description": "An array of objects containing details about each passenger."
         }
