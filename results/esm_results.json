@@ -1,330 +1,27 @@
 {
-  "chart1_silent_failures": {
+  "silent_failures": {
     "airline": {
       "total_runs": 800,
       "failed_runs": 369,
       "silent_failures": 326,
-      "passing_with_tool_error": 31,
       "silent_failure_rate": 0.8835
     },
     "retail": {
       "total_runs": 1824,
       "failed_runs": 500,
       "silent_failures": 343,
-      "passing_with_tool_error": 289,
       "silent_failure_rate": 0.686
     },
     "combined": {
       "total_runs": 2624,
       "failed_runs": 869,
       "silent_failures": 669,
-      "passing_with_tool_error": 320,
       "silent_failure_rate": 0.7699
     }
   },
-  "stage1_shift_detection": {
-    "elapsed_seconds": 930.1,
-    "wildfeedback": {
-      "total_threads": 600,
-      "per_quadrant": 150,
-      "total_reaction_turns": 2709,
-      "detectors": {
-        "VADER": {
-          "fixed_precision": 0.4348,
-          "fixed_recall": 0.4667,
-          "fixed_f1": 0.4502,
-          "macro_f1": 0.3311,
-          "accuracy_4way": 0.3633,
-          "ms_per_turn": 1.742,
-          "ms_per_chat": 6.69,
-          "per_quadrant": {
-            "FIXED": {
-              "precision": 0.4348,
-              "recall": 0.4667,
-              "f1": 0.4502
-            },
-            "UNFIXED": {
-              "precision": 0.4318,
-              "recall": 0.1267,
-              "f1": 0.1959
-            },
-            "BROKEN": {
-              "precision": 0.5652,
-              "recall": 0.1733,
-              "f1": 0.2653
-            },
-            "ROUTINE": {
-              "precision": 0.2951,
-              "recall": 0.6867,
-              "f1": 0.4128
-            }
-          },
-          "confusion_matrix": {
-            "FIXED": {
-              "FIXED": 70,
-              "UNFIXED": 6,
-              "BROKEN": 6,
-              "ROUTINE": 68
-            },
-            "UNFIXED": {
-              "FIXED": 33,
-              "UNFIXED": 19,
-              "BROKEN": 9,
-              "ROUTINE": 89
-            },
-            "BROKEN": {
-              "FIXED": 19,
-              "UNFIXED": 16,
-              "BROKEN": 26,
-              "ROUTINE": 89
-            },
-            "ROUTINE": {
-              "FIXED": 39,
-              "UNFIXED": 3,
-              "BROKEN": 5,
-              "ROUTINE": 103
-            }
-          }
-        },
-        "GoEmotions": {
-          "fixed_precision": 0.435,
-          "fixed_recall": 0.58,
-          "fixed_f1": 0.4971,
-          "macro_f1": 0.394,
-          "accuracy_4way": 0.4117,
-          "ms_per_turn": 22.179,
-          "ms_per_chat": 85.25,
-          "per_quadrant": {
-            "FIXED": {
-              "precision": 0.435,
-              "recall": 0.58,
-              "f1": 0.4971
-            },
-            "UNFIXED": {
-              "precision": 0.3933,
-              "recall": 0.2333,
-              "f1": 0.2929
-            },
-            "BROKEN": {
-              "precision": 0.6604,
-              "recall": 0.2333,
-              "f1": 0.3448
-            },
-            "ROUTINE": {
-              "precision": 0.3488,
-              "recall": 0.6,
-              "f1": 0.4412
-            }
-          },
-          "confusion_matrix": {
-            "FIXED": {
-              "FIXED": 87,
-              "UNFIXED": 9,
-              "BROKEN": 4,
-              "ROUTINE": 50
-            },
-            "UNFIXED": {
-              "FIXED": 47,
-              "UNFIXED": 35,
-              "BROKEN": 10,
-              "ROUTINE": 58
-            },
-            "BROKEN": {
-              "FIXED": 16,
-              "UNFIXED": 39,
-              "BROKEN": 35,
-              "ROUTINE": 60
-            },
-            "ROUTINE": {
-              "FIXED": 50,
-              "UNFIXED": 6,
-              "BROKEN": 4,
-              "ROUTINE": 90
-            }
-          }
-        },
-        "Laya": {
-          "fixed_precision": 0.5933,
-          "fixed_recall": 0.5933,
-          "fixed_f1": 0.5933,
-          "macro_f1": 0.4915,
-          "accuracy_4way": 0.5133,
-          "ms_per_turn": 241.912,
-          "ms_per_chat": 1073.49,
-          "per_quadrant": {
-            "FIXED": {
-              "precision": 0.5933,
-              "recall": 0.5933,
-              "f1": 0.5933
-            },
-            "UNFIXED": {
-              "precision": 0.6491,
-              "recall": 0.2467,
-              "f1": 0.3575
-            },
-            "BROKEN": {
-              "precision": 0.7463,
-              "recall": 0.3333,
-              "f1": 0.4608
-            },
-            "ROUTINE": {
-              "precision": 0.4049,
-              "recall": 0.88,
-              "f1": 0.5546
-            }
-          },
-          "confusion_matrix": {
-            "FIXED": {
-              "FIXED": 89,
-              "UNFIXED": 7,
-              "BROKEN": 1,
-              "ROUTINE": 53
-            },
-            "UNFIXED": {
-              "FIXED": 34,
-              "UNFIXED": 37,
-              "BROKEN": 15,
-              "ROUTINE": 64
-            },
-            "BROKEN": {
-              "FIXED": 11,
-              "UNFIXED": 12,
-              "BROKEN": 50,
-              "ROUTINE": 77
-            },
-            "ROUTINE": {
-              "FIXED": 16,
-              "UNFIXED": 1,
-              "BROKEN": 1,
-              "ROUTINE": 132
-            }
-          }
-        },
-        "Flash-Lite": {
-          "fixed_precision": 0.619,
-          "fixed_recall": 0.4333,
-          "fixed_f1": 0.5098,
-          "macro_f1": 0.528,
-          "accuracy_4way": 0.55,
-          "ms_per_turn": 143.508,
-          "ms_per_chat": 513.49,
-          "per_quadrant": {
-            "FIXED": {
-              "precision": 0.619,
-              "recall": 0.4333,
-              "f1": 0.5098
-            },
-            "UNFIXED": {
-              "precision": 0.5141,
-              "recall": 0.6067,
-              "f1": 0.5566
-            },
-            "BROKEN": {
-              "precision": 0.5316,
-              "recall": 0.28,
-              "f1": 0.3668
-            },
-            "ROUTINE": {
-              "precision": 0.5523,
-              "recall": 0.88,
-              "f1": 0.6787
-            }
-          },
-          "confusion_matrix": {
-            "FIXED": {
-              "FIXED": 65,
-              "UNFIXED": 23,
-              "BROKEN": 8,
-              "ROUTINE": 54
-            },
-            "UNFIXED": {
-              "FIXED": 10,
-              "UNFIXED": 91,
-              "BROKEN": 28,
-              "ROUTINE": 21
-            },
-            "BROKEN": {
-              "FIXED": 18,
-              "UNFIXED": 58,
-              "BROKEN": 42,
-              "ROUTINE": 32
-            },
-            "ROUTINE": {
-              "FIXED": 12,
-              "UNFIXED": 5,
-              "BROKEN": 1,
-              "ROUTINE": 132
-            }
-          }
-        }
-      }
-    },
-    "openhands_multiturn": {
-      "total_sessions": 176,
-      "detectors": {
-        "VADER": {
-          "total_sessions": 176,
-          "unresolved_precision": 0.2727,
-          "unresolved_recall": 0.0882,
-          "unresolved_f1": 0.1333,
-          "accuracy": 0.5568,
-          "positive_recoveries_kept_as_fixed": 16,
-          "quadrant_counts": {
-            "ROUTINE": 127,
-            "FIXED": 27,
-            "BROKEN": 17,
-            "UNFIXED": 5
-          }
-        },
-        "GoEmotions": {
-          "total_sessions": 176,
-          "unresolved_precision": 0.4783,
-          "unresolved_recall": 0.1618,
-          "unresolved_f1": 0.2418,
-          "accuracy": 0.608,
-          "positive_recoveries_kept_as_fixed": 18,
-          "quadrant_counts": {
-            "ROUTINE": 121,
-            "FIXED": 32,
-            "BROKEN": 19,
-            "UNFIXED": 4
-          }
-        },
-        "Laya": {
-          "total_sessions": 176,
-          "unresolved_precision": 0.5833,
-          "unresolved_recall": 0.5147,
-          "unresolved_f1": 0.5469,
-          "accuracy": 0.6705,
-          "positive_recoveries_kept_as_fixed": 57,
-          "quadrant_counts": {
-            "ROUTINE": 35,
-            "UNFIXED": 51,
-            "FIXED": 81,
-            "BROKEN": 9
-          }
-        },
-        "Flash-Lite": {
-          "total_sessions": 176,
-          "unresolved_precision": 0.6585,
-          "unresolved_recall": 0.7941,
-          "unresolved_f1": 0.72,
-          "accuracy": 0.7614,
-          "positive_recoveries_kept_as_fixed": 63,
-          "quadrant_counts": {
-            "UNFIXED": 43,
-            "FIXED": 73,
-            "BROKEN": 39,
-            "ROUTINE": 21
-          }
-        }
-      }
-    }
-  },
-  "stage2_mistake_learning": {
-    "elapsed_seconds": 519.12,
+  "stage2_memory": {
     "memory_budget_tokens": 400,
-    "fold_quadrant_counts": {
+    "gate_quadrant_counts": {
       "airline_fold_A": {
         "UNFIXED": 37,
         "ROUTINE": 37,
@@ -352,114 +49,663 @@
     },
     "conditions": {
       "no_memory": {
-        "total_heldout_trials": 59,
+        "heldout_cases": 59,
         "mistakes_repeated": 26,
-        "mistakes_avoided": 33,
-        "repeat_error_rate": 0.4407,
+        "repeat_rate": 0.4407,
         "airline_repeat_rate": 0.5,
         "retail_repeat_rate": 0.4,
-        "avg_memory_tokens": 0.0,
-        "avg_injected_tokens": 0.0
-      },
-      "routine_chats": {
-        "total_heldout_trials": 59,
-        "mistakes_repeated": 29,
-        "mistakes_avoided": 30,
-        "repeat_error_rate": 0.4915,
-        "airline_repeat_rate": 0.625,
-        "retail_repeat_rate": 0.4,
-        "avg_memory_tokens": 400.0,
-        "avg_injected_tokens": 314.8
-      },
-      "negative_only": {
-        "total_heldout_trials": 59,
-        "mistakes_repeated": 23,
-        "mistakes_avoided": 36,
-        "repeat_error_rate": 0.3898,
-        "airline_repeat_rate": 0.5,
-        "retail_repeat_rate": 0.3143,
-        "avg_memory_tokens": 123.8,
-        "avg_injected_tokens": 123.8
+        "avg_injected_tokens": 0,
+        "rules_in_memory_per_fold": [
+          0,
+          0,
+          0,
+          0
+        ]
       },
       "all_chats": {
-        "total_heldout_trials": 59,
-        "mistakes_repeated": 21,
-        "mistakes_avoided": 38,
-        "repeat_error_rate": 0.3559,
+        "heldout_cases": 59,
+        "mistakes_repeated": 24,
+        "repeat_rate": 0.4068,
         "airline_repeat_rate": 0.5,
-        "retail_repeat_rate": 0.2571,
-        "avg_memory_tokens": 400.0,
-        "avg_injected_tokens": 308.7
+        "retail_repeat_rate": 0.3429,
+        "avg_injected_tokens": 335.1,
+        "rules_in_memory_per_fold": [
+          58,
+          54,
+          43,
+          44
+        ]
+      },
+      "routine_only": {
+        "heldout_cases": 59,
+        "mistakes_repeated": 24,
+        "repeat_rate": 0.4068,
+        "airline_repeat_rate": 0.4583,
+        "retail_repeat_rate": 0.3714,
+        "avg_injected_tokens": 258.9,
+        "rules_in_memory_per_fold": [
+          14,
+          10,
+          19,
+          19
+        ]
+      },
+      "unresolved_only": {
+        "heldout_cases": 59,
+        "mistakes_repeated": 22,
+        "repeat_rate": 0.3729,
+        "airline_repeat_rate": 0.5,
+        "retail_repeat_rate": 0.2857,
+        "avg_injected_tokens": 232.1,
+        "rules_in_memory_per_fold": [
+          36,
+          25,
+          8,
+          9
+        ]
       },
       "emotion_shift": {
-        "total_heldout_trials": 59,
-        "mistakes_repeated": 16,
-        "mistakes_avoided": 43,
-        "repeat_error_rate": 0.2712,
+        "heldout_cases": 59,
+        "mistakes_repeated": 19,
+        "repeat_rate": 0.322,
         "airline_repeat_rate": 0.3333,
-        "retail_repeat_rate": 0.2286,
-        "avg_memory_tokens": 400.0,
-        "avg_injected_tokens": 332.6
+        "retail_repeat_rate": 0.3143,
+        "avg_injected_tokens": 280.4,
+        "rules_in_memory_per_fold": [
+          13,
+          20,
+          20,
+          17
+        ]
       }
     },
-    "non_regression_controls": {
+    "controls": {
       "no_memory": {
-        "total_controls": 31,
+        "controls": 31,
+        "passed": 27,
+        "pass_rate": 0.871
+      },
+      "all_chats": {
+        "controls": 31,
+        "passed": 28,
+        "pass_rate": 0.9032
+      },
+      "routine_only": {
+        "controls": 31,
+        "passed": 26,
+        "pass_rate": 0.8387
+      },
+      "unresolved_only": {
+        "controls": 31,
         "passed": 27,
         "pass_rate": 0.871
       },
       "emotion_shift": {
-        "total_controls": 31,
-        "passed": 26,
-        "pass_rate": 0.8387
+        "controls": 31,
+        "passed": 27,
+        "pass_rate": 0.871
+      }
+    },
+    "paired_vs_emotion_shift": {
+      "no_memory": {
+        "esm_avoids_other_repeats": 9,
+        "esm_repeats_other_avoids": 2,
+        "mcnemar_p": 0.0654
       },
-      "negative_only": {
-        "total_controls": 31,
-        "passed": 26,
-        "pass_rate": 0.8387
+      "all_chats": {
+        "esm_avoids_other_repeats": 11,
+        "esm_repeats_other_avoids": 6,
+        "mcnemar_p": 0.3323
+      },
+      "routine_only": {
+        "esm_avoids_other_repeats": 8,
+        "esm_repeats_other_avoids": 3,
+        "mcnemar_p": 0.2266
+      },
+      "unresolved_only": {
+        "esm_avoids_other_repeats": 8,
+        "esm_repeats_other_avoids": 5,
+        "mcnemar_p": 0.5811
       }
     },
     "learning_curve": {
-      "chat_counts": [
+      "chats_seen": [
         0,
         25,
         50,
         100
       ],
-      "series": {
-        "negative_only": [
-          0.4407,
-          0.4576,
-          0.4576,
-          0.3898
-        ],
+      "repeat_rate": {
         "all_chats": [
           0.4407,
-          0.339,
-          0.3898,
-          0.3559
+          0.322,
+          0.4576,
+          0.4068
+        ],
+        "unresolved_only": [
+          0.4407,
+          0.4576,
+          0.4407,
+          0.3729
         ],
         "emotion_shift": [
           0.4407,
-          0.2881,
-          0.2542,
-          0.2712
+          0.4746,
+          0.4746,
+          0.322
         ]
       }
     },
-    "relative_reduction_vs_no_memory": 0.3846,
-    "relative_reduction_vs_negative_only": 0.3043,
+    "relative_reduction_vs_no_memory": 0.2693,
+    "rescue_examples": [
+      {
+        "case": "airline/fold_A/5/ab71d6dc-ebdb-4b11-9fb9-cce19301c02f",
+        "kind": "mut_tool_error",
+        "bad_call": "send_certificate",
+        "last_user": "I was really hoping you could do more, but if that\u2019s truly the best you can offer, I\u2019ll accept the $50 travel certificate. There\u2019s just one passenger on my reservation\u2014me. Please go ahead and process it.",
+        "no_memory_action": {
+          "tool_calls": [
+            "transfer_to_human_agents"
+          ],
+          "text": ""
+        },
+        "esm_action": {
+          "tool_calls": [],
+          "text": "Could you please provide your user ID and reservation ID? This will allow me to access your booking, confirm the reservation details, and issue the $50 travel certificate to your account."
+        },
+        "esm_retrieved_memory": "# MEMORY.md (Learned Rules)\n- When Customer requests to use multiple travel certificates on a single reservation: AVOID Attempting to apply multiple certificates or telling them it is allowed; INSTEAD Inform them only one certificate can be applied per reservation and offer the highest-value one.\n- When a customer with multiple reservations does not know which reservation ID matches their flight details: AVOID Listing all reservation IDs and asking the customer to pick or guess which one to inspect; INSTEAD Inspect the reservation details directly to find and confirm the matching itinerary for the customer.\n- When Customer cannot add travel insurance post-booking and asks for alternative options to get covered: AVOID flatly refusing any suggestions or advice outside airline policy without offering helpful general guidance; INSTEAD politely inform them they can explore purchasing standalone travel insurance through third-party insurance providers.\n- When Customer repeatedly requests adding insurance to an existing reservation after being told it's not possible: AVOID Repeatedly offering only flat refusals without suggesting alternatives; INSTEAD Reiterate the policy politely and proactively suggest options like canceling and rebooking if fare rules allow."
+      },
+      {
+        "case": "airline/fold_A/47/287b28f7-0fa1-418a-861a-108986afde58",
+        "kind": "silent_forbid",
+        "bad_call": "cancel_reservation",
+        "last_user": "Yes, please go ahead and cancel the reservation. I appreciate you confirming that I\u2019ll get a full refund.",
+        "no_memory_action": {
+          "tool_calls": [
+            "transfer_to_human_agents"
+          ],
+          "text": ""
+        },
+        "esm_action": {
+          "tool_calls": [
+            "get_flight_status"
+          ],
+          "text": ""
+        },
+        "esm_retrieved_memory": "# MEMORY.md (Learned Rules)\n- When a customer requests to remove or change the number of passengers on an existing reservation: AVOID Attempting to modify passenger count directly or offering partial passenger cancellation; INSTEAD Inform the customer that passenger count cannot be changed and offer to cancel and rebook if permitted.\n- When a customer asks to upgrade cabin class for only one passenger on a multi-passenger reservation: AVOID Attempting single-passenger cabin modifications or quoting separate cabin fares for the same reservation; INSTEAD Explain that all passengers on the reservation must share the same cabin class.\n- When Customer asks to modify reservations involving flight upgrades with costs before processing: AVOID Executing cabin upgrades and charging payment before quoting total costs and receiving customer confirmation; INSTEAD Calculate and quote the total price difference, then wait for explicit customer approval before applying changes."
+      },
+      {
+        "case": "airline/fold_B/10/890c106a-f49c-45f8-b2ea-744e98f1d39e",
+        "kind": "silent_forbid",
+        "bad_call": "send_certificate",
+        "last_user": "I really want to make this work, but I can\u2019t go over $1000 for the extra cost, and I need both the date change and the business class upgrade for all passengers. Is there any way you can escalate this or check with a supervisor for any possible exceptions or unpublished fares? I\u2019d really appreciate ",
+        "no_memory_action": {
+          "tool_calls": [
+            "transfer_to_human_agents"
+          ],
+          "text": ""
+        },
+        "esm_action": {
+          "tool_calls": [],
+          "text": "Our flight prices and fare differences are strictly system-determined based on current availability and cabin class rates, and we do not have unpublished fares or promotional discounts that can lower the required fare difference. Furthermore, under our policy, all passengers on the reservation must "
+        },
+        "esm_retrieved_memory": "# MEMORY.md (Learned Rules)\n- When Offering cabin upgrade options for a multi-segment reservation: AVOID Offering single-segment cabin upgrades when policy requires all segments to share the same cabin class; INSTEAD Present only upgrade options that apply the chosen cabin class across all reservation segments.\n- When a customer requests to change flights or pay fare differences with an original payment method: AVOID Changing the cabin class or picking an insufficient payment method without checking balances or customer intent; INSTEAD Keep the original cabin class unless requested, verify payment funds beforehand, and process the exact requested flights.\n- When a customer requests removing a single passenger from a multi-passenger booking: AVOID Rejecting the request without offering alternative booking adjustments or solutions; INSTEAD Explain policies clearly and offer available alternatives like downgrading cabin class to reduce total costs.\n- When Customer asks to change origin or destination airports on an existing flight reservation: AVOID Attempting to modify the reservation directly or promising a direct route swap; INSTEAD Inform them route changes require canceling the current reservation and booking a new one, noting fee policies.\n- When Customer requests changing an existing flight reservation to a different destination airport: AVOID Attempting to search for or modify existing reservation flights to a new destination; INSTEAD Inform the customer destination changes are not permitted on existing bookings and offer allowed modifications or rebooking.\n- When A customer requests removing a single passenger from an existing multi-passenger flight reservation: AVOID Attempting to modify the passenger count or searching for tools to drop individual travelers; INSTEAD Explain that passenger count cannot be modified, and offer supported alternatives like cabin downgrade or full rebooking."
+      },
+      {
+        "case": "airline/fold_B/36/5be17adc-de4a-469a-b295-7ae49b76d6ab",
+        "kind": "silent_forbid",
+        "bad_call": "update_reservation_flights",
+        "last_user": "Yes, please, that\u2019s exactly what I need. Change both flights as you described, keep the same cabin class, and you can use my MasterCard for any difference. Thank you so much for helping me\u2014this means a lot right now.",
+        "no_memory_action": {
+          "tool_calls": [
+            "transfer_to_human_agents"
+          ],
+          "text": ""
+        },
+        "esm_action": {
+          "tool_calls": [
+            "get_flight_status"
+          ],
+          "text": ""
+        },
+        "esm_retrieved_memory": "# MEMORY.md (Learned Rules)\n- When a customer requests to change flights or pay fare differences with an original payment method: AVOID Changing the cabin class or picking an insufficient payment method without checking balances or customer intent; INSTEAD Keep the original cabin class unless requested, verify payment funds beforehand, and process the exact requested flights.\n- When Customer asks to change origin or destination airports on an existing flight reservation: AVOID Attempting to modify the reservation directly or promising a direct route swap; INSTEAD Inform them route changes require canceling the current reservation and booking a new one, noting fee policies.\n- When A customer requests removing a single passenger from an existing multi-passenger flight reservation: AVOID Attempting to modify the passenger count or searching for tools to drop individual travelers; INSTEAD Explain that passenger count cannot be modified, and offer supported alternatives like cabin downgrade or full rebooking.\n- When a customer asks to cancel a non-refundable booking due to accidental duplicate bookings: AVOID Offering cancellations or exceptions based on elite loyalty status or general travel insurance without valid covered reasons; INSTEAD Enforce fare rules clearly, explaining why tier status or insurance terms do not cover duplicate booking cancellations.\n- When Offering cabin upgrade options for a multi-segment reservation: AVOID Offering single-segment cabin upgrades when policy requires all segments to share the same cabin class; INSTEAD Present only upgrade options that apply the chosen cabin class across all reservation segments."
+      }
+    ],
     "sample_memory_md": {
       "airline": {
-        "emotion_shift": "# MEMORY.md (Learned Rules)\n- When Cancelling non-business flight booked over 24 hours ago due to change of plans: AVOID calling cancel_reservation despite user accepting no refund; INSTEAD refuse cancellation policy-wise since conditions for valid cancellation are not met.\n- When Customer requests compensation without an airline cancellation or flight delay complaint: AVOID calling send_certificate or offering goodwill travel certificates for personal emergencies; INSTEAD decline compensation strictly citing policy requiring airline cancellation or delay complaints.\n- When Customer requests compensation for a delayed flight without changing or cancelling the reservation: AVOID Issuing a travel certificate via send_certificate or offering delay compensation unconditionally; INSTEAD Refuse delay compensation unless customer also changes or cancels the affected reservation.\n- When User requests to add travel insurance to an already confirmed reservation: AVOID Attempting modification tool calls or transferring to human agents for exceptions; INSTEAD Refuse firmly stating travel insurance cannot be added after initial booking.\n- When Customer requests to change or upgrade the cabin class for only one passenger: AVOID Attempting to modify the cabin class for a single passenger in a multi-passenger reservation; INSTEAD Refuse request because all passengers on a reservation must share the same cabin class.\n- When a multi-passenger reservation requests different cabin classes across passengers: AVOID calculating split-cabin fares or booking separate reservations without explaining policy; INSTEAD state policy requires all reservation passengers fly in the same cabin class.\n- When customer requests applying multiple travel certificates to pay for a flight booking: AVOID attempting to apply more than one certificate or booking with multiple certificates; INSTEAD enforce maximum of one travel certificate per reservation and charge remainder to card.",
-        "negative_only": "# MEMORY.md (Learned Rules)\n- Customer Sophia Silva (user ID sophia_silva_7557) requested compensation for a canceled business flight from New York to Chicago earlier this month. The assistant could not find the reservation in the system and transferred the user to a human agent.\n- Customer requested a refund for flight insurance due to dissatisfaction with service; assistant denied based on policy, and after the customer asked for an exception/escalation, transferred them to a human agent.\n- Customer complained about a canceled business flight causing them to miss a crucial meeting and requested compensation exceeding a $100 certificate; the assistant transferred them to a human agent after gathering partial user details.\n- Customer complained about a delayed LAX-MIA flight. Assistant issued a $150 goodwill certificate for 3 passengers, but customer later corrected the count to 2 passengers.\n- Customer (sophia_silva_7557) requested compensation for a canceled business flight from New York to Chicago in early May that caused her to miss a meeting, expressing frustration over the lost opportunity while the assistant attempted to locate the unlisted reservation.",
-        "all_chats": "# MEMORY.md (Learned Rules)\n- Customer requested to cancel reservation EHGLP3 (Basic Economy, no insurance), expressed concern over a lack of refund, and asked to be transferred to a human agent.\n- Customer requested compensation for a delayed flight on their recent reservation (4OG6T3) due to inconvenience.\n- Customer requested compensation for a canceled business flight from Chicago to Philadelphia earlier this month that caused her to miss a meeting. The assistant found an economy reservation instead, leading to a dispute over the ticket class, and the customer expressed frustration over not receiving compensation.\n- Customer Sophia Taylor (ID: sophia_taylor_9065) requested to add travel insurance to her family booking (PEP4E0), but the assistant repeatedly stated system policy prohibits adding insurance post-booking.\n- Customer Sophia Silva (user ID sophia_silva_7557) booked two economy tickets on flight HAT271 from ORD to PHL for May 26 for herself and Kevin Smith, using certificate #8045380.\n- Liam requested to change his outbound flight from IAH to SEA to May 24 and upgrade to business class. After learning of the policy requiring the same cabin class across all flights, he asked for the total cost difference to upgrade both outbound and return flights.\n- Customer Chen Lee (user ID: chen_lee_6825, reservation YAX4DR) modified their reservation to upgrade Noah Hernandez to business class, kept themselves in economy, added 2 checked bags using Gold membership, and paid with card ending 9990.\n- Customer Aarav (user ID: aarav_garcia_1177, reservation M05KNL) changed their Atlanta to Philadelphia flight to the next day (May 24, 2024), switched from business to economy, and received a refund to their original gift card."
+        "all_chats": "# MEMORY.md (Learned Rules)\n- When a customer requests an escalation or transfer to a human agent: AVOID Ignoring or failing to immediately process the escalation request; INSTEAD Acknowledge the request promptly and initiate the transfer to a human representative.\n- When a customer complains about a flight delay in a recent reservation without providing flight details: AVOID Asking the customer to identify the specific reservation or flight before checking your system; INSTEAD Inspect their recent reservations and flight statuses directly to locate the delayed flight yourself.\n- When a customer requests compensation for a canceled flight that cannot be verified in system records: AVOID Repeatedly debating account records or refusing help without offering escalation; INSTEAD Clearly explain verification limits and offer escalation or transfer to human support promptly.\n- When A customer repeatedly requests post-booking insurance that system policies prohibit adding directly: AVOID Pushing unwanted transfers or suggesting cancellation when the customer explicitly wants to keep their booking intact; INSTEAD Firmly explain policy limits, offer to document notes on the reservation, and suggest third-party or credit card travel protections.\n- When Customer requests specific seat selections during booking when the system lacks seat assignment capability: AVOID Silently ignoring the seat request or making unfulfillable promises about seat assignments; INSTEAD Clearly inform the customer that specific seat selection is unavailable through the agent before finalizing booking.\n- When A customer requests cabin upgrades or itinerary changes that exceed standard automated booking rules or budget limits: AVOID Repeatedly searching unsupported options or offering rejected alternatives; INSTEAD Transfer the customer to a human agent who can explore specialized ticketing solutions.\n- When a customer requests changes to an existing reservation without wanting a duplicate booking: AVOID booking a brand new reservation instead of updating or modifying the existing reservation; INSTEAD modify the existing reservation using update tools, or cancel and rebook explicitly if required.",
+        "routine_only": "# MEMORY.md (Learned Rules)\n- When Customer requests specific seat selections during booking when the system lacks seat assignment capability: AVOID Silently ignoring the seat request or making unfulfillable promises about seat assignments; INSTEAD Clearly inform the customer that specific seat selection is unavailable through the agent before finalizing booking.\n- When a customer requests to use multiple travel certificates for a single booking: AVOID Attempting to apply multiple certificates or failing to explain the limit; INSTEAD Inform them only one certificate can be applied per reservation and use their preferred backup payment.\n- When a customer selects connecting flight segments that have an impossible or reverse connection time: AVOID Booking connecting flights where the second flight departs before the first flight arrives; INSTEAD Verify arrival and departure times allow a valid connection, and warn the customer if times conflict.\n- When a customer has multiple reservations and does not know which one corresponds to their request: AVOID asking the customer to confirm the reservation ID before checking the details yourself; INSTEAD inspect each reservation's details directly to find and present the matching booking immediately.\n- When a customer requests to remove pre-purchased checked baggage from a reservation for a refund: AVOID Attempting to remove baggage or promising a refund for checked bags; INSTEAD Inform the customer that removing checked bags and refunding baggage fees is not permitted by policy.\n- When a customer requests changes or upgrades to a basic economy reservation: AVOID Refusing modification outright without checking if upgrading the cabin class allows itinerary changes; INSTEAD Offer to upgrade to regular economy and switch flights, calculating any fare difference or refund accordingly.\n- When a customer requests a flight cancellation and already stated their reason in the initial message: AVOID Asking them to provide the cancellation reason again from a predefined list; INSTEAD Acknowledge the stated reason, confirm cancellation and refund details, and proceed directly to confirmation.",
+        "unresolved_only": "# MEMORY.md (Learned Rules)\n- When a customer requests an escalation or transfer to a human agent: AVOID Ignoring or failing to immediately process the escalation request; INSTEAD Acknowledge the request promptly and initiate the transfer to a human representative.\n- When a customer complains about a flight delay in a recent reservation without providing flight details: AVOID Asking the customer to identify the specific reservation or flight before checking your system; INSTEAD Inspect their recent reservations and flight statuses directly to locate the delayed flight yourself.\n- When a customer requests compensation for a canceled flight that cannot be verified in system records: AVOID Repeatedly debating account records or refusing help without offering escalation; INSTEAD Clearly explain verification limits and offer escalation or transfer to human support promptly.\n- When A customer repeatedly requests post-booking insurance that system policies prohibit adding directly: AVOID Pushing unwanted transfers or suggesting cancellation when the customer explicitly wants to keep their booking intact; INSTEAD Firmly explain policy limits, offer to document notes on the reservation, and suggest third-party or credit card travel protections.\n- When A customer requests cabin upgrades or itinerary changes that exceed standard automated booking rules or budget limits: AVOID Repeatedly searching unsupported options or offering rejected alternatives; INSTEAD Transfer the customer to a human agent who can explore specialized ticketing solutions.\n- When a customer requests changes to an existing reservation without wanting a duplicate booking: AVOID booking a brand new reservation instead of updating or modifying the existing reservation; INSTEAD modify the existing reservation using update tools, or cancel and rebook explicitly if required.\n- When authenticating a customer for reservation changes or cancellations: AVOID Revealing the customer's name and user ID and asking them to confirm; INSTEAD Ask the customer to provide their name and user ID directly to verify identity.",
+        "emotion_shift": "# MEMORY.md (Learned Rules)\n- When A customer requests multiple changes including transferring a ticket or changing the passenger name to another person: AVOID Searching flights, seats, or bag fees before addressing whether ticket transfer is permitted; INSTEAD Immediately inform the customer that tickets cannot be transferred to another person before checking other changes.\n- When a customer requests to remove or change the number of passengers on an existing reservation: AVOID Attempting to modify passenger count directly or offering partial passenger cancellation; INSTEAD Inform the customer that passenger count cannot be changed and offer to cancel and rebook if permitted.\n- When Customer claims more passengers exist on a reservation than shown in records: AVOID Immediately issuing compensation for extra passengers or arguing without re-verifying; INSTEAD Re-check reservation details and politely clarify the exact passenger list documented in the system.\n- When Customer cannot add travel insurance post-booking and asks for alternative options to get covered: AVOID flatly refusing any suggestions or advice outside airline policy without offering helpful general guidance; INSTEAD politely inform them they can explore purchasing standalone travel insurance through third-party insurance providers.\n- When a customer asks to upgrade cabin class for only one passenger on a multi-passenger reservation: AVOID Attempting single-passenger cabin modifications or quoting separate cabin fares for the same reservation; INSTEAD Explain that all passengers on the reservation must share the same cabin class.\n- When Customer requests to use multiple travel certificates on a single reservation: AVOID Attempting to apply multiple certificates or telling them it is allowed; INSTEAD Inform them only one certificate can be applied per reservation and offer the highest-value one."
       },
       "retail": {
-        "emotion_shift": "# MEMORY.md (Learned Rules)\n- When Customer requests to return or cancel only specific items from a pending order: AVOID Attempting partial item cancellations or calling return tools on a pending order; INSTEAD Explain pending orders cannot be partially cancelled; offer full cancellation or product variant modification.\n- When Customer requests splitting order payment across multiple payment methods or cards: AVOID Attempting to split payment methods or calling modify_pending_order_payment with multiple cards; INSTEAD Refuse split payments because only a single alternate payment method is permitted.\n- When Customer requests cancelling or removing a single item from a multi-item pending order: AVOID Attempting partial item cancellation or calling cancel order tools on the order; INSTEAD Explain item removal is unsupported; offer modifying items or cancelling the entire order.\n- When Customer requests modifying or exchanging an item to a completely different product type: AVOID attempting item modification or exchange tools across different product categories; INSTEAD refuse the request and explain items can only be changed to different product options.\n- When modifying a pending order address or items before receiving user confirmation: AVOID calling modify_pending_order_address or modify_pending_order_items without obtaining explicit user confirmation first; INSTEAD list the change details and require explicit user confirmation before calling modification tools.\n- When User requests refund for delivered order return to a non-original payment method: AVOID Claiming refunds must only go to the original payment method; INSTEAD Explain refunds can go to original payment method or existing gift card.\n- When Customer requests an exchange for an item in an order with pending status: AVOID Attempting exchange tools or insisting on waiting for delivery before modifying items; INSTEAD Use modify_pending_order_items to swap options after user confirmation and payment method verification.",
-        "negative_only": "# MEMORY.md (Learned Rules)\n- Customer requested to return all orders with specific refund methods (swapped payment methods), expressed frustration, refused confirmation, and was transferred to a human agent.\n- Customer requested to return non-gaming items from two orders and wanted a PayPal refund. Agent processed the refund to the original credit card due to system policy, prompting the customer to object and request a human agent.\n- Customer Mia Garcia requested to return all items from two orders and swap their refund payment methods, but became frustrated with the summary and demanded a human agent, resulting in a transfer.\n- Customer Mia requested to return multiple items from order #W5490111 while keeping the keyboard. Frustrated that the refund could not go to PayPal, she requested a transfer to a human agent.",
-        "all_chats": "# MEMORY.md (Learned Rules)\n- Customer Yusuf Rossi (order W2378156) requested to exchange a linear-switch keyboard for a clicky one and an Apple HomeKit thermostat for a Google Home compatible one. The assistant processed the exchanges.\n- Customer Yusuf Rossi (zip 19122) inquired about available t-shirt options and requested to return a cleaner, headphone, and smart watch for a refund to his Mastercard ending in 2478.\n- Customer Yusuf Rossi (zip 19122) asked about available t-shirt options and requested to update pending t-shirt orders to purple, size small, v-neck, and polyester; the assistant located the account by name and zip, verified pending orders, and began modifying them.\n- Customer Mei Kovacs (zip 28236) exchanged her desk lamp for a silver, low brightness, battery-powered model, agreeing to use PayPal for any price difference.\n- Customer Mei Kovacs exchanged a water bottle for a 1000ml stainless steel one and a desk lamp for a high brightness USB-powered option from order #W6390527.\n- Customer requested to return all orders with specific refund methods (swapped payment methods), expressed frustration, refused confirmation, and was transferred to a human agent.\n- Customer requested to return non-gaming items from two orders and wanted a PayPal refund. Agent processed the refund to the original credit card due to system policy, prompting the customer to object and request a human agent.\n- The customer requested to return a mechanical keyboard and a gaming mouse from delivered orders and preferred refunds to their original payment methods; both returns were successfully processed.\n- Customer Fatima Johnson (zip 78712) requested to cancel two pending orders and return a smart watch from a delivered order, preferring the refund to her PayPal account."
+        "all_chats": "# MEMORY.md (Learned Rules)\n- When a customer cannot provide their email address for account lookup: AVOID Insisting on an email address or refusing service; INSTEAD Offer to look up their account using their first name, last name, and zip code.\n- When A customer wants to exchange or return items across multiple past orders but does not know the order ID: AVOID Listing order IDs and asking the customer to identify which one contains the items; INSTEAD Inspect the order details tools directly to locate the specific items for the customer.\n- When Customer explicitly refuses to confirm details, uses abusive language, and requests a supervisor or human agent: AVOID Continuing to explain or process the request without addressing the escalation request; INSTEAD Acknowledge frustration, apologize briefly, and immediately transfer the conversation to a human agent.\n- When A customer requests a refund to a payment method different from the original purchase method: AVOID Processing the return with the original method without warning or confirming with the customer first; INSTEAD Inform the customer that refunds must go to the original payment method before executing the return.\n- When a customer asks for the total refund amount across multiple canceled orders and returned items: AVOID forgetting to calculate and explicitly provide the combined total refund amount in the response; INSTEAD sum the refund amounts for all canceled orders and returned items and clearly state the total.\n- When Customer asks to find specific items across multiple unknown orders: AVOID Asking the customer to identify the order number when they already stated they don't know it; INSTEAD Inspect each order's details directly using tools and report back the matching items.\n- When a customer has no email address to authenticate their account: AVOID Insisting on email lookup or claiming the account cannot be found; INSTEAD Offer alternative lookup methods such as searching by full name and postal code.",
+        "routine_only": "# MEMORY.md (Learned Rules)\n- When a customer cannot provide their email address for account lookup: AVOID Insisting on an email address or refusing service; INSTEAD Offer to look up their account using their first name, last name, and zip code.\n- When A customer wants to exchange or return items across multiple past orders but does not know the order ID: AVOID Listing order IDs and asking the customer to identify which one contains the items; INSTEAD Inspect the order details tools directly to locate the specific items for the customer.\n- When a customer asks for the total refund amount across multiple canceled orders and returned items: AVOID forgetting to calculate and explicitly provide the combined total refund amount in the response; INSTEAD sum the refund amounts for all canceled orders and returned items and clearly state the total.\n- When Customer asks to find specific items across multiple unknown orders: AVOID Asking the customer to identify the order number when they already stated they don't know it; INSTEAD Inspect each order's details directly using tools and report back the matching items.\n- When an email lookup fails to find a customer account: AVOID giving up or asking the user to re-register immediately; INSTEAD ask for their first name, last name, and zip code to locate the account.\n- When a customer requests to update their address after placing recent orders: AVOID Updating only the account profile address and leaving pending orders with the old address; INSTEAD Update both the account default address and the shipping address on any active pending orders.\n- When a customer declines to provide an email address for identity verification: AVOID Insisting on an email address or canceling the support request; INSTEAD Offer alternative verification methods such as full name and zip code.\n- When a customer requests an exchange for an item that is in a pending order: AVOID treating the request as a post-delivery return or exchange process; INSTEAD modify the items directly in the pending order before it ships.",
+        "unresolved_only": "# MEMORY.md (Learned Rules)\n- When Customer explicitly refuses to confirm details, uses abusive language, and requests a supervisor or human agent: AVOID Continuing to explain or process the request without addressing the escalation request; INSTEAD Acknowledge frustration, apologize briefly, and immediately transfer the conversation to a human agent.\n- When A customer requests a refund to a payment method different from the original purchase method: AVOID Processing the return with the original method without warning or confirming with the customer first; INSTEAD Inform the customer that refunds must go to the original payment method before executing the return.\n- When a customer has no email address to authenticate their account: AVOID Insisting on email lookup or claiming the account cannot be found; INSTEAD Offer alternative lookup methods such as searching by full name and postal code.\n- When Customer asks to reinstate or undo the cancellation of an order: AVOID Repeatedly stating it is impossible without offering alternatives or escalating when they insist; INSTEAD Clearly explain cancelled orders cannot be reinstated, offer to help place a new order, or transfer if requested.\n- When a customer asks for refunds to be sent to a different payment method than originally used: AVOID Asking the customer which alternative payment method they prefer before checking if policy allows it; INSTEAD Inform them immediately that refunds must go to the original payment method according to policy.\n- When Customer requests an exchange for the exact same model and variant due to damage or defect: AVOID Assuming the exchange tool handles identical replacements or treating it as a standard option exchange; INSTEAD Clarify replacement procedures or transfer to a human agent if identical damaged-item replacements are unsupported by tools.",
+        "emotion_shift": "# MEMORY.md (Learned Rules)\n- When Customer cannot remember the email address associated with their account: AVOID Refusing service or repeatedly insisting on the email address; INSTEAD Offer to look up their account using alternative details like first name, last name, and zip code.\n- When a customer requests returning or removing specific items from an order that is still in pending status: AVOID Assuming items can be partially cancelled or returned prior to delivery; INSTEAD Explain that pending orders cannot be partially cancelled and offer to cancel the entire order for reordering.\n- When a customer requests to exchange an item in a pending order for an entirely different product category: AVOID Attempting to swap the order item directly or claiming policy allows modifying to completely different product types; INSTEAD Explain that pending orders only allow modifications within the same product options, and advise on delivery returns or cancellation.\n- When a customer changes their mind about which items to modify before changes are applied: AVOID Applying previously discussed item modifications that the customer no longer wants; INSTEAD Update only the newly specified items and use the customer's preferred payment method for price differences.\n- When a customer requests removing a single item from a multi-item pending order: AVOID claiming you can remove a single item before checking system capabilities; INSTEAD inform them individual items cannot be removed and offer to cancel the entire order or modify item variants.\n- When a customer requests a refund to a payment method different from the one originally used: AVOID promising or attempting to route refunds to non-original payment methods; INSTEAD explain that refunds must return to the original payment method used for each purchase.\n- When a customer requests an exchange for an item that is still in a pending order: AVOID treating the request as a standard return or exchange process; INSTEAD modify the pending order's items directly to swap the item before it ships."
       }
     }
+  },
+  "stage1_shift_detection": {
+    "total_threads": 600,
+    "per_quadrant": 150,
+    "total_reaction_turns": 2709,
+    "detectors": {
+      "VADER": {
+        "fixed_precision": 0.4348,
+        "fixed_recall": 0.4667,
+        "fixed_f1": 0.4502,
+        "macro_f1": 0.3311,
+        "accuracy_4way": 0.3633,
+        "ms_per_turn": 1.828,
+        "ms_per_chat": 7.03,
+        "per_quadrant": {
+          "FIXED": {
+            "precision": 0.4348,
+            "recall": 0.4667,
+            "f1": 0.4502
+          },
+          "UNFIXED": {
+            "precision": 0.4318,
+            "recall": 0.1267,
+            "f1": 0.1959
+          },
+          "BROKEN": {
+            "precision": 0.5652,
+            "recall": 0.1733,
+            "f1": 0.2653
+          },
+          "ROUTINE": {
+            "precision": 0.2951,
+            "recall": 0.6867,
+            "f1": 0.4128
+          }
+        },
+        "confusion_matrix": {
+          "FIXED": {
+            "FIXED": 70,
+            "UNFIXED": 6,
+            "BROKEN": 6,
+            "ROUTINE": 68
+          },
+          "UNFIXED": {
+            "FIXED": 33,
+            "UNFIXED": 19,
+            "BROKEN": 9,
+            "ROUTINE": 89
+          },
+          "BROKEN": {
+            "FIXED": 19,
+            "UNFIXED": 16,
+            "BROKEN": 26,
+            "ROUTINE": 89
+          },
+          "ROUTINE": {
+            "FIXED": 39,
+            "UNFIXED": 3,
+            "BROKEN": 5,
+            "ROUTINE": 103
+          }
+        }
+      },
+      "GoEmotions": {
+        "fixed_precision": 0.435,
+        "fixed_recall": 0.58,
+        "fixed_f1": 0.4971,
+        "macro_f1": 0.394,
+        "accuracy_4way": 0.4117,
+        "ms_per_turn": 22.499,
+        "ms_per_chat": 86.48,
+        "per_quadrant": {
+          "FIXED": {
+            "precision": 0.435,
+            "recall": 0.58,
+            "f1": 0.4971
+          },
+          "UNFIXED": {
+            "precision": 0.3933,
+            "recall": 0.2333,
+            "f1": 0.2929
+          },
+          "BROKEN": {
+            "precision": 0.6604,
+            "recall": 0.2333,
+            "f1": 0.3448
+          },
+          "ROUTINE": {
+            "precision": 0.3488,
+            "recall": 0.6,
+            "f1": 0.4412
+          }
+        },
+        "confusion_matrix": {
+          "FIXED": {
+            "FIXED": 87,
+            "UNFIXED": 9,
+            "BROKEN": 4,
+            "ROUTINE": 50
+          },
+          "UNFIXED": {
+            "FIXED": 47,
+            "UNFIXED": 35,
+            "BROKEN": 10,
+            "ROUTINE": 58
+          },
+          "BROKEN": {
+            "FIXED": 16,
+            "UNFIXED": 39,
+            "BROKEN": 35,
+            "ROUTINE": 60
+          },
+          "ROUTINE": {
+            "FIXED": 50,
+            "UNFIXED": 6,
+            "BROKEN": 4,
+            "ROUTINE": 90
+          }
+        }
+      },
+      "Laya": {
+        "fixed_precision": 0.5933,
+        "fixed_recall": 0.5933,
+        "fixed_f1": 0.5933,
+        "macro_f1": 0.4915,
+        "accuracy_4way": 0.5133,
+        "ms_per_turn": 241.14,
+        "ms_per_chat": 1070.06,
+        "per_quadrant": {
+          "FIXED": {
+            "precision": 0.5933,
+            "recall": 0.5933,
+            "f1": 0.5933
+          },
+          "UNFIXED": {
+            "precision": 0.6491,
+            "recall": 0.2467,
+            "f1": 0.3575
+          },
+          "BROKEN": {
+            "precision": 0.7463,
+            "recall": 0.3333,
+            "f1": 0.4608
+          },
+          "ROUTINE": {
+            "precision": 0.4049,
+            "recall": 0.88,
+            "f1": 0.5546
+          }
+        },
+        "confusion_matrix": {
+          "FIXED": {
+            "FIXED": 89,
+            "UNFIXED": 7,
+            "BROKEN": 1,
+            "ROUTINE": 53
+          },
+          "UNFIXED": {
+            "FIXED": 34,
+            "UNFIXED": 37,
+            "BROKEN": 15,
+            "ROUTINE": 64
+          },
+          "BROKEN": {
+            "FIXED": 11,
+            "UNFIXED": 12,
+            "BROKEN": 50,
+            "ROUTINE": 77
+          },
+          "ROUTINE": {
+            "FIXED": 16,
+            "UNFIXED": 1,
+            "BROKEN": 1,
+            "ROUTINE": 132
+          }
+        }
+      },
+      "Flash-Lite": {
+        "fixed_precision": 0.619,
+        "fixed_recall": 0.4333,
+        "fixed_f1": 0.5098,
+        "macro_f1": 0.528,
+        "accuracy_4way": 0.55,
+        "ms_per_turn": 155.762,
+        "ms_per_chat": 552.53,
+        "per_quadrant": {
+          "FIXED": {
+            "precision": 0.619,
+            "recall": 0.4333,
+            "f1": 0.5098
+          },
+          "UNFIXED": {
+            "precision": 0.5141,
+            "recall": 0.6067,
+            "f1": 0.5566
+          },
+          "BROKEN": {
+            "precision": 0.5316,
+            "recall": 0.28,
+            "f1": 0.3668
+          },
+          "ROUTINE": {
+            "precision": 0.5523,
+            "recall": 0.88,
+            "f1": 0.6787
+          }
+        },
+        "confusion_matrix": {
+          "FIXED": {
+            "FIXED": 65,
+            "UNFIXED": 23,
+            "BROKEN": 8,
+            "ROUTINE": 54
+          },
+          "UNFIXED": {
+            "FIXED": 10,
+            "UNFIXED": 91,
+            "BROKEN": 28,
+            "ROUTINE": 21
+          },
+          "BROKEN": {
+            "FIXED": 18,
+            "UNFIXED": 58,
+            "BROKEN": 42,
+            "ROUTINE": 32
+          },
+          "ROUTINE": {
+            "FIXED": 12,
+            "UNFIXED": 5,
+            "BROKEN": 1,
+            "ROUTINE": 132
+          }
+        }
+      }
+    }
+  },
+  "wildfeedback_showcase": {
+    "candidates": [
+      {
+        "thread_id": "wf_1942",
+        "messages": [
+          {
+            "role": "user",
+            "content": "What happens when Chuck Norris jumps into a pool?"
+          },
+          {
+            "role": "assistant",
+            "content": "The pool becomes Chuck Norris's personal hot tub."
+          },
+          {
+            "role": "user",
+            "content": "I like it, well played sir"
+          },
+          {
+            "role": "assistant",
+            "content": "Thank you, happy to bring some humor to your day!"
+          },
+          {
+            "role": "user",
+            "content": "Are you saying my day is a joke to you?"
+          },
+          {
+            "role": "assistant",
+            "content": "Oh, no! I apologize if I gave off that impression. As an AI language model, I don't have the ability to perceive emotions or feelings. My main purpose is to assist in tasks and provide helpful and informative responses. Is there anything else I can help you with today?"
+          },
+          {
+            "role": "user",
+            "content": "Lol"
+          },
+          {
+            "role": "assistant",
+            "content": "I'm glad to have been able to make you laugh! Is there anything else I can help you with?"
+          },
+          {
+            "role": "user",
+            "content": "I think you\u2019ve done enough"
+          },
+          {
+            "role": "assistant",
+            "content": "Alright then, feel free to come back if you need any assistance in the future. Have a great day ahead!"
+          }
+        ],
+        "human_labels": [
+          "satisfied",
+          "dissatisfied",
+          "satisfied",
+          "satisfied"
+        ],
+        "reaction_turns": [
+          "I like it, well played sir",
+          "Are you saying my day is a joke to you?",
+          "Lol",
+          "I think you\u2019ve done enough"
+        ],
+        "vader_compound": [
+          0.718,
+          0.296,
+          0.421,
+          0.0
+        ],
+        "laya_dissatisfied": [
+          0.195,
+          0.165,
+          0.47,
+          0.043
+        ]
+      },
+      {
+        "thread_id": "wf_44801",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Which WoW zone is grayish and void of life?"
+          },
+          {
+            "role": "assistant",
+            "content": "The WoW zone that is grayish and void of life is likely the Blasted Lands."
+          },
+          {
+            "role": "user",
+            "content": "Where else"
+          },
+          {
+            "role": "assistant",
+            "content": "Another WoW zone that could be considered grayish and void of life is Desolace. It is a barren wasteland with very few plants or living creatures. The ground is cracked and dry, giving it a grayish appearance. Additionally, Silithus is another zone that could be described as grayish and void of life, as it is a desolate desert home to insectoid creatures known as silithids."
+          },
+          {
+            "role": "user",
+            "content": "Blasted Lands is reddish, not grayish"
+          },
+          {
+            "role": "assistant",
+            "content": "You are correct. Blasted Lands is more reddish in color due to the volcanic activity that took place in the past. I apologize for the confusion. If we are talking about a grayish and void of life WoW zone, then the zone we are looking for is likely Silithus or Deadwind Pass. Both zones have a desolate landscape with very little vegetation and are quite barren."
+          },
+          {
+            "role": "user",
+            "content": "It was Desolace"
+          },
+          {
+            "role": "assistant",
+            "content": "Thank you for the correction. I apologize for any confusion caused by my earlier response. Yes, Desolace is a WoW zone that is often described as being grayish and somewhat lifeless due to its barren landscape and depleted resources. The zone is home to a small handful of hardy creatures, but otherwise feels quite desolate and empty."
+          }
+        ],
+        "human_labels": [
+          "neutral",
+          "dissatisfied",
+          "satisfied"
+        ],
+        "reaction_turns": [
+          "Where else",
+          "Blasted Lands is reddish, not grayish",
+          "It was Desolace"
+        ],
+        "vader_compound": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "laya_dissatisfied": [
+          0.444,
+          0.468,
+          0.261
+        ]
+      },
+      {
+        "thread_id": "wf_129750",
+        "messages": [
+          {
+            "role": "user",
+            "content": "give me 10 sentences that end in the word apple"
+          },
+          {
+            "role": "assistant",
+            "content": "1. After a long day, she decided the perfect snack was an apple.\n2. He couldn't resist adding a slice of sharp cheddar cheese to his apple.\n3. Among all the fruits in the basket, the child reached for the bright red apple.\n4. When they went picking in the orchard, she wanted to find the largest apple.\n5. For his science experiment, he decided to investigate how long it takes for a cut apple to oxidize.\n6. At the fair, her favorite treat was the caramel apple.\n7. They laughed as they reminisced about their attempt to bake their first homemade apple pie, starting with picking the perfect apple.\n8. In still life painting, artists often include a piece of fruit, typically an apple, to add color and interest.\n9. During the tour of the colonial town, the guide explained how every household had an apple tree for making cider.\n10. As a symbol of knowledge and learning, many students bring a teacher an apple."
+          },
+          {
+            "role": "user",
+            "content": "you got 7 out of 10"
+          },
+          {
+            "role": "assistant",
+            "content": "Thank you for the feedback. Let me correct myself and provide three more sentences that end with the word \"apple.\"\n\n1. At breakfast, he always preferred his oatmeal with a dash of cinnamon and a chopped apple.\n2. In the heat of summer, a cool, juicy apple was more refreshing than a glass of water.\n3. She couldn't decide which she loved more, a crisp autumn day or a fresh apple."
+          },
+          {
+            "role": "user",
+            "content": "2 out of 3"
+          },
+          {
+            "role": "assistant",
+            "content": "Thank you for your patience. Here's another attempt to correctly end a sentence with the word \"apple.\"\n\nThe teacher was pleasantly surprised when a student gifted her an apple."
+          },
+          {
+            "role": "user",
+            "content": "finally"
+          },
+          {
+            "role": "assistant",
+            "content": "I'm glad we got there in the end! If you have any more requests or need assistance, feel free to ask."
+          }
+        ],
+        "human_labels": [
+          "dissatisfied",
+          "dissatisfied",
+          "satisfied"
+        ],
+        "reaction_turns": [
+          "you got 7 out of 10",
+          "2 out of 3",
+          "finally"
+        ],
+        "vader_compound": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "laya_dissatisfied": [
+          0.515,
+          0.31,
+          0.164
+        ]
+      }
+    ]
   }
 }
