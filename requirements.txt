@@ -1,8 +1,4 @@
-# Python dependencies for Emotion-Shift Memory (ESM).
-# The Gemini client, cache, and MEMORY.md code use only the Python standard library.
-# These packages run the local mood detectors and the tests:
-pytest>=7.0.0
-vaderSentiment>=3.3.2
-torch>=2.2.0
-transformers>=4.40.0
-laya>=0.4.12
+laya
+torch
+transformers
+pytest

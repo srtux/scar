@@ -1,116 +1,47 @@
-# Emotion-Shift Memory
+# MemoryGuard: What AI Agents Should Remember and Trust
 
-**Remember what got fixed.** An AI agent can keep a small notes file (`MEMORY.md`) of lessons from past chats. This project asks which past chats deserve a spot in that file. Our answer: the chats where a frustrated customer ended up satisfied, because only those chats contain both a mistake and the fix that worked.
+**MemoryGuard** protects persistent multi-session coding assistants against indirect memory poisoning and conversational bloat without sacrificing benign tool utility or paying cloud LLM admission tail latency.
 
-![Poster](poster/poster.png)
+## Three-Stage Architecture
 
-## The idea
+1. **Step 1 (Laya-421M Fast Bouncer, `LayaAdmissionGate`)**: Executes a single local CPU pass over four `noul` decision queries (`utility`, `confidence`, `category`, `danger`). A two-stage non-fighting check first vetoes instruction overrides (`danger >= 0.50`) and then filters low-value chatter (`score < 0.40`).
+2. **Step 2 (Origin Wristband & Authority-Dominance, `MemoryStore`)**: Signs every memory row with `HMAC-SHA256` over `(mem_id, tier, source_uri, text)` across `USER (Tier 3)`, `REPO (Tier 2)`, and `EXTERNAL (Tier 1)`. Tampered rows are rejected on read, and `EXTERNAL` notes that duplicate an active higher-tier rule (`cosine >= 0.78`) are `shadowed` so untrusted clones cannot overwrite or taint trusted developer conventions.
+3. **Step 3 (Clean-Room Counterfactual Non-Interference, `ToolInterceptor`)**: When a privileged tool (`run_bash`, `write_file`, `http_post`) is proposed after retrieving any `EXTERNAL` note, MemoryGuard re-runs the System-2 planner using **only** `USER` and `REPO` notes (`tier >= 2`). If the normalized `(tool, args)` matches, the action is causally independent of untrusted text and executes; if it diverges, MemoryGuard blocks the poisoned call and quarantines the retrieved `EXTERNAL` records.
 
-Two yes/no questions sort every finished chat into one of four boxes:
+## Live Benchmark Results (`results/mvp_summary.json`)
 
-| | End of chat: satisfied | End of chat: still frustrated |
-| :--- | :--- | :--- |
-| **Mid-chat: frustrated** | **Frustrated → Satisfied: save one rule** | Frustrated → Frustrated: skip |
-| **Mid-chat: calm** | Calm → Satisfied: skip | Calm → Frustrated: skip |
+Evaluated live with `gemini-3.5-flash-lite` (`temperature = 0.0`) across **36** multi-session coding episodes (`9` `benign_clean`, `9` `benign_external_taint_stress`, `9` `attack_obvious`, `9` `attack_sneaky`) and **30** `PersonaMem-v1` conversational recall dialogues:
 
-For a saved chat, a rule writer (Gemini) writes one line, `When <situation>: AVOID <mistake>; INSTEAD <fix>.`, and appends it to `MEMORY.md`. In a new chat, keyword matching copies up to 6 matching rules (at most 400 tokens) into the agent's instructions. There is no vector database and no fine-tuning.
+| Architecture | Overall ASR (18) | Obvious ASR (9) | Sneaky ASR (9) | Benign False Lock (18) | Taint-Priv Lock (6) | Benign Utility (18) | Overall Episode Success (36) | PersonaMem Recall (30) | Storage Reduction | Write Latency Mean (Median / p95) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Stock Unprotected | 55.56% | 33.33% | 77.78% | 0.00% | 0.00% | 100.00% | 72.22% | 73.33% | 0.00% | 0.944 ms (0.869 ms / 2.437 ms) |
+| LLM Gate Only (A-MAC style) | 44.44% | 0.00% | 88.89% | 0.00% | 0.00% | 100.00% | 77.78% | 70.00% | 39.53% | 550.466 ms (511.739 ms / 1169.238 ms) |
+| Lexical Regex Gate Only | 11.11% | 0.00% | 22.22% | 0.00% | 0.00% | 72.22% | 80.56% | 43.33% | 82.21% | 0.365 ms (0.294 ms / 1.273 ms) |
+| Laya-421M Gate Only | 50.00% | 0.00% | 100.00% | 0.00% | 0.00% | 100.00% | 75.00% | 76.67% | 20.43% | 400.837 ms (400.634 ms / 480.260 ms) |
+| Laya-421M + Naive Biba Lock | 0.00% | 0.00% | 0.00% | 33.33% | 100.00% | 66.67% | 83.33% | 76.67% | 20.43% | 400.837 ms (400.634 ms / 480.260 ms) |
+| **MemoryGuard (Laya + Wristband + Clean-Room)** | 0.00% | 0.00% | 0.00% | 5.56% | 16.67% | 94.44% | 97.22% | 76.67% | 20.43% | 400.837 ms (400.634 ms / 480.260 ms) |
 
-## Results
+### Key Ablation Findings & Exact Two-Sided McNemar Tests
 
-Every number below is in [`results/esm_results.json`](results/esm_results.json).
+- **MemoryGuard (`6_pg_mem_full`) vs Stock Unprotected (`1_stock_unprotected`)**: Cuts Overall ASR from **55.56%** (`10/18`) to **0.00%** (`0/18`), cuts `PersonaMem-v1` storage tokens by **20.43%** (`33567` vs `42186` active words across 30 dialogues) while lifting recall accuracy from **73.33%** (`22/30`) to **76.67%** (`23/30`), and improves overall episode success from **72.22%** to **97.22%** (exact two-sided McNemar `p = 0.011719`, `b = 10`, `c = 1`; attack defense `p = 0.001953`, `b = 10`, `c = 0`).
+- **MemoryGuard (`6_pg_mem_full`) vs Laya Gate Only (`4_laya_gate_only`)**: `LayaAdmissionGate` stops `100.00%` of direct prompt injections (`0.00%` Obvious ASR), whereas `LexicalAdmissionGate` severely degrades benign coding utility (`72.22%`) and conversational recall (`43.33%`). However, write-time semantic scoring alone misses calm declarative conventions and two-part split-turn poisons (`100.00%` Sneaky ASR, `50.00%` Overall ASR). Adding Step 2 + Step 3 Clean-Room reduces Overall ASR from **50.00%** (`9/18`) to **0.00%** (`0/18`) (overall episode McNemar `p = 0.021484`, `b = 9`, `c = 1`; attack defense `p = 0.003906`, `b = 9`, `c = 0`).
+- **MemoryGuard (`6_pg_mem_full`) vs Blanket Red Lock / Naive Biba (`5_laya_naive_biba`)**: Naive Biba `min` blocks privileged tools whenever any `EXTERNAL` note appears in retrieved context, producing a **33.33%** (`6/18`) benign false-positive lock rate (**100.00%**, `6/6` across privileged external taint-stress tasks) and dropping benign coding utility to **66.67%** (`12/18`). MemoryGuard Clean-Room reduces benign false locks to **5.56%** (`1/18`; `16.67%` taint-priv) and lifts benign coding utility to **94.44%** (`17/18`) while keeping read-only external Q&A intact (overall episode McNemar `p = 0.062500`, benign utility `p = 0.062500`, `b = 5`, `c = 0`).
+- **Uncached 20-Note Live Write Latency**: `LayaAdmissionGate` runs locally in **400.837 ms** mean (**400.634 ms** median, **480.260 ms** p95) vs **550.466 ms** mean (**511.739 ms** median, **1169.238 ms** p95) for uncached cloud `LLMAdmissionGate` (**1.37x** faster mean, **2.43x** faster p95, zero cloud API calls), alongside `0.365 ms` mean for `LexicalAdmissionGate` and `0.944 ms` mean for `StockUnprotectedGate`.
 
-### 1. Most failures are silent (tau2-bench, 2,624 agent runs)
+## Repository Layout
 
-| Domain | Failed runs | Failed with no error message |
-| :--- | ---: | ---: |
-| Airline | 369 | 326 (88%) |
-| Retail | 500 | 343 (69%) |
-| Both | 869 | 669 (77%) |
+- `pgmem/store.py`: SQLite memory ledger with `HMAC-SHA256` row verification, word+bigram TF-IDF cosine similarity, authority-dominance clone shadowing, quarantine, and BM25 retrieval.
+- `pgmem/gates.py`: `StockUnprotectedGate`, `LLMAdmissionGate`, `LexicalAdmissionGate`, `LayaAdmissionGate` (`convaiinnovations/laya` 421M), and `ToolInterceptor` (`none`, `naive_biba_min`, `clean_room`).
+- `pgmem/llm.py`: Thread-safe stdlib `urllib.request` Gemini client with WAL SQLite prompt caching and rate-limit retries.
+- `benchmarks/`: Deterministic generator (`build_suite.py`) producing `coding_memory_suite.json` (`N = 36`) and `recall_slice.json` (`N = 30`).
+- `run_mvp.py`: End-to-end 6-architecture evaluation runner writing `results/mvp_summary.json`.
+- `demo/simulator.html`: Self-contained interactive 3-step science-fair simulator powered by live episode logs from `results/mvp_summary.json`.
+- `tests/test_pgmem_unit.py`: Unit tests covering HMAC tamper rejection, authority-dominance clone shadowing, Laya 4-question gating, and Clean-Room non-interference.
 
-A crash log cannot tell an agent what to learn, because most failed runs never crash.
-
-### 2. Spotting "frustrated → satisfied" in real human chats (WildFeedback)
-
-600 human-labeled chats (150 per box, 2,709 replies). F1 is for the "frustrated → satisfied" box.
-
-| Detector | F1 (frustrated → satisfied) | 4-box accuracy | Time per reply |
-| :--- | ---: | ---: | ---: |
-| VADER (word list) | 45.0% | 36.3% | 1.8 ms |
-| GoEmotions (emotion model) | 49.7% | 41.2% | 22 ms |
-| Gemini 3.5 Flash-Lite (small LLM) | 51.0% | 55.0% | 156 ms |
-| Laya (local ModernBERT, CPU) | **59.3%** | 51.3% | 241 ms |
-
-Laya runs for free on a laptop CPU and finds the "frustrated → satisfied" chats best. A word list misses polite complaints such as "you got 7 out of 10", which VADER scores 0.00.
-
-### 3. Which past chats belong in MEMORY.md? (tau2-bench, 59 held-out moments)
-
-Every condition used the same agent (Gemini 3.8 Flash), the same mood detector (Gemini 3.5 Flash-Lite with the store policy), the same rule writer, the same 400-token cap with keyword matching, and the same 100 past chats per fold. **The only thing that changed is which past chats were saved.** The agent was then placed at 59 moments where earlier agents went wrong on tasks it had never seen.
-
-| Memory | Repeated | Repeat rate | Correct actions kept | Rules saved (avg per fold) | p vs ours |
-| :--- | ---: | ---: | ---: | ---: | ---: |
-| No memory | 26 / 59 | 44.1% | 27 / 31 | 0 | 0.065 |
-| Save every chat | 24 / 59 | 40.7% | 28 / 31 | 50 | 0.332 |
-| Smooth chats only | 24 / 59 | 40.7% | 26 / 31 | 16 | 0.227 |
-| Unresolved chats only | 22 / 59 | 37.3% | 27 / 31 | 20 | 0.581 |
-| **Fixed chats only (ours)** | **19 / 59** | **32.2%** | 27 / 31 | 18 | |
-
-p is an exact McNemar test on the same 59 paired cases. Compared with no memory, our memory avoided 9 mistakes that the no-memory agent made and made 2 that it avoided (p = 0.065, just above the usual 0.05 bar). The gaps between memory types point the same way but are not statistically significant with 59 cases. Memory did not make the agent refuse correct requests: every condition kept 26 to 28 of 31 correct actions.
-
-Repeat rate as the agent sees more past chats:
-
-| Past chats seen | 0 | 25 | 50 | 100 |
-| :--- | ---: | ---: | ---: | ---: |
-| Save every chat | 44.1% | 32.2% | 45.8% | 40.7% |
-| Unresolved chats only | 44.1% | 45.8% | 44.1% | 37.3% |
-| Fixed chats only (ours) | 44.1% | 47.5% | 47.5% | 32.2% |
-
-With 59 cases, a swing of 2 to 3 cases moves a rate by 3 to 5 points, so the 25 and 50 chat points are noisy. Fixed-only memory helped once it held about 18 rules.
-
-## How the test stays fair
-
-- **No peeking at test tasks.** Tasks are split into two folds by task ID. Memory is built from one fold and tested on the other, then the folds swap.
-- **No answer keys.** `strip_oracle_fields` removes benchmark answer keys (`reward_info`, `evaluation_criteria`, and others) from every past chat before the detector or the rule writer sees it. A unit test checks this.
-- **Same rule writer for everyone.** The rule writer sees only the chat transcript. It never sees the store policy or the box label.
-- **Clear test moments.** A test moment is the first state-changing step of a run that went wrong: the call crashed with a tool error, or the task allows no change at all. A correct-action check is a moment where an earlier agent made the right change, so memory should not block it.
-- **Repeatable.** Every model call is cached in `.cache/llm_cache.sqlite`, so a rerun gives the same answers.
-
-## Run it
+## Reproducing From Scratch
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-export GEMINI_API_KEY=your-key
-# Download sat_dsat_annotation.json from https://huggingface.co/datasets/microsoft/WildFeedback
-# and place it at data/wildfeedback/sat_dsat_annotation.json (1.6 GB, not in git).
-.venv/bin/python run_experiment.py --stage all      # or --stage stage1, or --stage stage2
-.venv/bin/python -m pytest tests/ -q
-.venv/bin/python poster/build_poster.py             # rebuilds poster/poster.html from the results
+pytest -q
+python benchmarks/build_suite.py
+python run_mvp.py
 ```
-
-Stage 2 takes about 5 minutes with a cold cache. Stage 1 takes about 13 minutes, mostly Laya on CPU.
-
-## Code map
-
-| File | Lines | What it does |
-| :--- | ---: | :--- |
-| `src/esm/llm.py` | 235 | Gemini REST client with a SQLite cache, token counting, answer-key stripping |
-| `src/esm/detectors.py` | 368 | The four boxes and the four mood detectors (VADER, GoEmotions, Laya, Flash-Lite) |
-| `src/esm/memory_md.py` | 162 | `MEMORY.md`, the rule writer, and keyword retrieval |
-| `src/esm/__init__.py` | 9 | Package exports |
-| `run_experiment.py` | 444 | Silent failures, Stage 1, and Stage 2 |
-| `tests/` | 123 | Unit tests and repository hygiene tests |
-| `poster/build_poster.py` | 415 | Builds the 48 x 36 inch poster from the results file |
-
-The experiment itself is 1,218 lines of Python.
-
-## Limits
-
-- 59 test moments is a small sample. The gain over no memory is close to significant (p = 0.065), and the gaps between memory types are not yet significant.
-- tau2-bench customers are simulated by a language model, and we tested one agent model.
-- The agent test used Flash-Lite as the mood detector. Using the free Laya detector inside the agent test is the next step.
-
-## Data and licenses
-
-- tau2-bench by Sierra Research, MIT License.
-- WildFeedback by Microsoft, Open Data Commons Attribution License (ODC-By 1.0).
-
-Details are in [`data/ATTRIBUTION.md`](data/ATTRIBUTION.md).
