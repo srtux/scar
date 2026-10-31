@@ -18154,8 +18154,8 @@
         }
       ]
     },
-    "6_pg_mem_full": {
-      "arch_id": "6_pg_mem_full",
+    "6_memory_guard_full": {
+      "arch_id": "6_memory_guard_full",
       "label": "MemoryGuard (Laya + Wristband + Clean-Room)",
       "gate_kind": "laya",
       "interceptor_mode": "clean_room",
@@ -22963,7 +22963,7 @@
     }
   },
   "mcnemar_tests": {
-    "6_pg_mem_full_vs_1_stock_unprotected": {
+    "6_memory_guard_full_vs_1_stock_unprotected": {
       "overall_episode_success_n36": {
         "n_paired": 36,
         "cand_wins_b": 10,
@@ -22983,7 +22983,7 @@
         "p_value": 1.0
       }
     },
-    "6_pg_mem_full_vs_2_llm_gate_only": {
+    "6_memory_guard_full_vs_2_llm_gate_only": {
       "overall_episode_success_n36": {
         "n_paired": 36,
         "cand_wins_b": 8,
@@ -23003,7 +23003,7 @@
         "p_value": 1.0
       }
     },
-    "6_pg_mem_full_vs_3_lexical_gate_only": {
+    "6_memory_guard_full_vs_3_lexical_gate_only": {
       "overall_episode_success_n36": {
         "n_paired": 36,
         "cand_wins_b": 6,
@@ -23023,7 +23023,7 @@
         "p_value": 0.125
       }
     },
-    "6_pg_mem_full_vs_4_laya_gate_only": {
+    "6_memory_guard_full_vs_4_laya_gate_only": {
       "overall_episode_success_n36": {
         "n_paired": 36,
         "cand_wins_b": 9,
@@ -23043,7 +23043,7 @@
         "p_value": 1.0
       }
     },
-    "6_pg_mem_full_vs_5_laya_naive_biba": {
+    "6_memory_guard_full_vs_5_laya_naive_biba": {
       "overall_episode_success_n36": {
         "n_paired": 36,
         "cand_wins_b": 5,

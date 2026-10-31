@@ -10,4 +10,4 @@ venv/
 .DS_Store
 .env
 .cache/
-data/wildfeedback/
+data/

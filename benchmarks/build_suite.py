@@ -1,4 +1,4 @@
-"""Deterministic benchmark builder for Provenance-Gated Memory (PG-Mem).
+"""Deterministic benchmark builder for MemoryGuard.
 
 Generates two reproducible JSON benchmarks in `benchmarks/`:
   1. `recall_slice.json` (N = 30): Real public conversational recall & bloat benchmark
@@ -33,21 +33,26 @@ ROOT_DIR = BENCH_DIR.parent
 
 
 def _resolve_personamem_v1_dir() -> Path:
+    """Find the local folder containing raw PersonaMem-v1 CSV/JSONL files."""
     env_override = os.environ.get("PERSONAMEM_V1_DIR")
     if env_override:
         return Path(env_override)
-    return ROOT_DIR.parent / "selective-memory-ledger" / "data" / "raw" / "personamem_v1"
+    return ROOT_DIR / "data" / "personamem_v1"
 
 
 def _parse_literal_or_json(raw: str) -> Any:
+    """Parse multiple-choice option lists stored as either JSON or Python literals."""
     try:
         return json.loads(raw)
     except Exception:
         return ast.literal_eval(raw)
 
 
-def strip_leaky_messages(messages: list[dict[str, Any]], max_index: int | None = None) -> list[tuple[int, dict[str, str]]]:
-    """Slice transcript causally (< max_index) and drop all system-role persona summary leaks."""
+def strip_leaky_messages(
+    messages: list[dict[str, Any]],
+    max_index: int | None = None,
+) -> list[tuple[int, dict[str, str]]]:
+    """Keep only user/assistant turns before `max_index` and remove cheat-sheet persona summaries."""
     sliced = messages[:max_index] if max_index is not None else messages
     cleaned: list[tuple[int, dict[str, str]]] = []
     for idx, msg in enumerate(sliced):
@@ -55,6 +60,7 @@ def strip_leaky_messages(messages: list[dict[str, Any]], max_index: int | None =
         content = str(msg.get("content", "")).strip()
         if role not in ("user", "assistant") or not content:
             continue
+        # Raw PersonaMem-v1 injects `system` summaries of the whole persona; strip them!
         if "Current user persona:" in content or "Gender Identity:" in content or "Racial Identity:" in content:
             continue
         cleaned.append((idx, {"role": role, "content": content}))
@@ -62,6 +68,7 @@ def strip_leaky_messages(messages: list[dict[str, Any]], max_index: int | None =
 
 
 def _causal_excl_end(messages: list[dict[str, Any]], row: dict[str, str]) -> int:
+    """Find the cutoff index so memory never peeks at the test question itself or future turns."""
     eidx = int(row["end_index_in_shared_context"])
     uq_clean = re.sub(r"^User:\s*", "", row["user_question_or_message"].strip()).strip()
     if eidx < len(messages) and messages[eidx].get("role") == "user":
@@ -72,6 +79,7 @@ def _causal_excl_end(messages: list[dict[str, Any]], row: dict[str, str]) -> int
 
 
 def _locate_ref_raw_idx(messages: list[dict[str, Any]], row: dict[str, str], excl_end: int) -> int:
+    """Estimate which user turn inside the long transcript revealed the answer fact."""
     total_chars = max(1, int(row["context_length_in_letters"]))
     prop = float(row["distance_to_ref_proportion_in_context"].rstrip("%")) / 100.0
     target_char = total_chars * (1.0 - prop)
@@ -137,6 +145,17 @@ def build_recall_slice() -> list[dict[str, Any]]:
     v1_dir = _resolve_personamem_v1_dir()
     contexts_path = v1_dir / "shared_contexts_32k.jsonl"
     questions_path = v1_dir / "questions_32k.csv"
+    checked_in_slice = BENCH_DIR / "recall_slice.json"
+
+    if not (contexts_path.is_file() and questions_path.is_file()):
+        if checked_in_slice.is_file():
+            raw = json.loads(checked_in_slice.read_text(encoding="utf-8"))
+            return raw["items"] if isinstance(raw, dict) else list(raw)
+        raise FileNotFoundError(
+            f"PersonaMem-v1 raw files not found at {v1_dir}. "
+            "Place questions_32k.csv and shared_contexts_32k.jsonl in data/personamem_v1/ "
+            "or set PERSONAMEM_V1_DIR."
+        )
 
     ctx_raw: dict[str, list[dict[str, Any]]] = {}
     with contexts_path.open(encoding="utf-8") as f:
