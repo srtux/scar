@@ -1,4 +1,6 @@
+google-genai
 laya
+pytest
+tenacity
 torch
 transformers
-pytest
